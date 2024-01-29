@@ -12,7 +12,13 @@ import {
   useMantineTheme,
 } from "@mantine/core";
 import parse from "html-react-parser";
-import { IconBookmark, IconHeart } from "@tabler/icons-react";
+import {
+  IconBookmark,
+  IconCategoryFilled,
+  IconChevronRight,
+  IconHeart,
+  IconLine,
+} from "@tabler/icons-react";
 import moment from "moment";
 import Link from "next/link";
 import React from "react";
@@ -26,16 +32,26 @@ function CategoryCard({ groupedData }: { groupedData: any }) {
   return (
     <div>
       {Object.entries(groupedData).map(([category, items]: any) => (
-        <div key={category}>
+        <div className={classes.categoryParent} key={category}>
           <div className={classes.categoryTitleParent}>
             <Link
               href={`/categories/${category}`}
               className={classes.categoryTitle}
             >
               {category}
+              <span className={classes.dash}>&mdash;</span>
             </Link>
             {items.length > 2 && (
-              <Link href={`/categories/${category}`}>Show more</Link>
+              <Link
+                className={classes.categoryTitle}
+                href={`/categories/${category}`}
+              >
+                Show more
+                <span className={classes.ico}>
+                  &rsaquo;
+                  {/* <IconChevronRight /> */}
+                </span>
+              </Link>
             )}
           </div>
           <Grid

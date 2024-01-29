@@ -39,7 +39,7 @@ export default async function Page() {
 
   return (
     <div>
-      <Header />
+      <Header groupedData={groupedData} />
       <Introduction />
       <Demo groupedData={groupedData} />
 

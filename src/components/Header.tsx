@@ -5,6 +5,12 @@ import { useDisclosure } from "@mantine/hooks";
 // import { MantineLogo } from "@mantinex/mantine-logo";
 import classes from "@/styles/Header.module.css";
 import { InputSearch } from "./inputs/InputSearch";
+import Link from "next/link";
+import {
+  IconBrandFacebook,
+  IconBrandTwitter,
+  IconBrandYoutube,
+} from "@tabler/icons-react";
 
 const userLinks = [
   { link: "#", label: "Privacy & Security" },
@@ -20,24 +26,44 @@ const mainLinks = [
   { link: "#", label: "Forums" },
 ];
 
-export function Header() {
+export function Header({ groupedData }: { groupedData: any }) {
   const [opened, { toggle }] = useDisclosure(false);
   const [active, setActive] = useState(0);
 
-  const mainItems = mainLinks.map((item, index) => (
-    <Anchor<"a">
-      href={item.link}
-      key={item.label}
-      className={classes.mainLink}
-      data-active={index === active || undefined}
-      onClick={(event) => {
-        event.preventDefault();
-        setActive(index);
-      }}
-    >
-      {item.label}
-    </Anchor>
-  ));
+  // {
+  //   Object.entries(groupedData).map(([category, items]) => (
+  //     <Link
+  //       onClick={() => setMobileMenuOpen(false)}
+  //       key={category}
+  //       className={
+  //         pathname.includes(category)
+  //           ? "block navbar-links"
+  //           : "block navbar-links-hover pb-2"
+  //       }
+  //       href={`/categories/${category}`}
+  //     >
+  //       {category}
+  //     </Link>
+  //   ));
+  // }
+
+  const mainItems = Object.entries(groupedData).map(
+    ([category, items]: any, index) => (
+      <Link
+        href={"/" + category}
+        key={category}
+        className={classes.mainLink}
+        data-active={index === active || undefined}
+        onClick={(event) => {
+          event.preventDefault();
+          setActive(index);
+        }}
+      >
+        {category}
+        {/* {items?.length} */}
+      </Link>
+    )
+  );
 
   const secondaryItems = userLinks.map((item) => (
     <Anchor
@@ -52,24 +78,31 @@ export function Header() {
 
   return (
     <header className={classes.header}>
-      <Container m={"sm"} w={"100%"} className={classes.inner}>
-        {/* <MantineLogo size={34} /> */}
-        <Image src={""} alt="dfghj" />
-        <InputSearch />
+      <Container size={"lg"}>
+        <div className={classes.inner}>
+          {/* <MantineLogo size={34} /> */}
+          <Image height={40} src={"./next.svg"} alt="dfghj" />
+          <InputSearch />
 
-        <Box className={classes.links} visibleFrom="sm">
-          <Group justify="flex-end">{secondaryItems}</Group>
-          <Group gap={0} justify="flex-end" className={classes.mainLinks}>
-            {mainItems}
-          </Group>
-        </Box>
-        <Burger
-          opened={opened}
-          onClick={toggle}
-          className={classes.burger}
-          size="sm"
-          hiddenFrom="sm"
-        />
+          <Box className={classes.links} visibleFrom="sm">
+            <Group justify="flex-end">
+              {/* {secondaryItems} */}
+              <IconBrandYoutube />
+              <IconBrandFacebook />
+              <IconBrandTwitter />
+            </Group>
+          </Box>
+          <Burger
+            opened={opened}
+            onClick={toggle}
+            className={classes.burger}
+            size="sm"
+            hiddenFrom="sm"
+          />
+        </div>
+        <Group gap={0} justify="flex-end" className={classes.mainLinks}>
+          {mainItems}
+        </Group>
       </Container>
     </header>
   );

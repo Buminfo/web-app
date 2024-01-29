@@ -1,5 +1,5 @@
 .header {
-  height: rem(84px);
+  /* height: rem(84px); */
   margin-bottom: rem(80px);
   background-color: var(--mantine-color-body);
   border-bottom: rem(1px) solid
@@ -23,6 +23,7 @@
 
 .mainLinks {
   margin-right: calc(var(--mantine-spacing-sm) * -1);
+  justify-content: center;
 }
 
 .mainLink {
@@ -34,9 +35,9 @@
   border-bottom: rem(2px) solid transparent;
   transition: border-color 100ms ease, color 100ms ease;
 
+  text-decoration: none;
   @mixin hover {
     color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
-    text-decoration: none;
   }
 
   &[data-active] {

@@ -9,6 +9,7 @@ import {
   List,
   ThemeIcon,
   rem,
+  Grid,
 } from "@mantine/core";
 import { IconCheck } from "@tabler/icons-react";
 // import image from "./image.svg";
@@ -16,20 +17,20 @@ import classes from "@/styles/Introduction.module.css";
 
 export function Introduction() {
   return (
-    <Container size="md">
-      <div className={classes.inner}>
-        <div className={classes.content}>
+    <Container size="lg">
+      <Grid className={classes.inne}>
+        <Grid.Col span={{ base: 12, lg: 6 }} className={classes.contnt}>
           <Title className={classes.title}>
-            A <span className={classes.highlight}>modern</span> React <br />{" "}
-            components library
+            Welcome to <span className={classes.highlight}>Buminfo</span>
           </Title>
           <Text c="dimmed" mt="md">
-            Build fully functional accessible web applications faster than ever
-            – Mantine includes more than 120 customizable components and hooks
-            to cover you in any situation
+            Buminfo: Your ultimate news blog. Stay informed with accurate,
+            engaging coverage. Politics, tech, science, entertainment, sports,
+            and more. Join us as we explore the world&apos;s stories. Trust
+            Buminfo for the latest updates.
           </Text>
 
-          <Group mt={30}>
+          {/* <Group mt={30}>
             <Button radius="xl" size="md" className={classes.control}>
               Get started
             </Button>
@@ -41,10 +42,17 @@ export function Introduction() {
             >
               Source code
             </Button>
-          </Group>
-        </div>
-        <Image src="./next.svg" alt="img" className={classes.image} />
-      </div>
+          </Group> */}
+        </Grid.Col>
+        <Grid.Col span={{ base: 12, lg: 6 }}>
+          <Image
+            src="./next.svg"
+            alt="img"
+            height={180}
+            className={classes.imae}
+          />
+        </Grid.Col>
+      </Grid>
     </Container>
   );
 }
