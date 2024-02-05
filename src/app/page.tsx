@@ -37,7 +37,6 @@ export default async function Page() {
 
   return (
     <div>
-      {allBlogs[0].name}
       <Header allBlogs={allBlogs} />
       <Introduction />
       <CategoryCard allBlogs={allBlogs} />
