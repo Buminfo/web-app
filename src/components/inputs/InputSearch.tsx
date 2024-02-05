@@ -13,9 +13,11 @@ export function InputSearch(props: TextInputProps) {
 
   return (
     <TextInput
+      w={500}
+      miw={100}
       radius="xl"
       size="md"
-      placeholder="Search questions"
+      placeholder="Search topics"
       rightSectionWidth={42}
       leftSection={
         <IconSearch style={{ width: rem(18), height: rem(18) }} stroke={1.5} />

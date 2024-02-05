@@ -25,6 +25,7 @@ import "@mantine/core/styles.css";
 // import React from "react";
 import { MantineProvider, ColorSchemeScript } from "@mantine/core";
 import { theme } from "../../theme";
+import { DataProvider } from "@/dataContext";
 // import { theme } from "../theme";
 
 export const metadata = {
@@ -45,7 +46,7 @@ export default function RootLayout({ children }: { children: any }) {
       </head>
       <body>
         <MantineProvider defaultColorScheme="auto" theme={theme}>
-          {children}
+          <DataProvider>{children}</DataProvider>
         </MantineProvider>
       </body>
     </html>

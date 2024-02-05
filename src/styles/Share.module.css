@@ -1,0 +1,7 @@
+.dropdown {
+  display: flex;
+  column-gap: 6px;
+}
+.menu {
+  box-shadow: var(--mantine-color-black);
+}

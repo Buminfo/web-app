@@ -1,23 +1,17 @@
-import { ArticleCard } from "@/components/ArticleCard";
-import Demo from "@/components/Demo";
-import {
-  Card,
-  Image,
-  Text,
-  Badge,
-  Button,
-  Group,
-  Container,
-  Grid,
-} from "@mantine/core";
+// "use client";
+
 import { groupDataByCategory } from "../../utils/groupData";
 import CategoryCard from "@/components/CategoryCard";
 import { Introduction } from "@/components/Introduction";
 import { Header } from "@/components/Header";
+// import { useContext } from "react";
+// import { DataContext } from "@/dataContext";
 
 async function getData() {
   const res = await fetch(
-    "https://api.slingacademy.com/v1/sample-data/blog-posts?offset=5&limit=300"
+    "https://api.jsonsilo.com/public/ef9df789-0db9-4402-8bd1-d33254214790"
+
+    // "https://api.slingacademy.com/v1/sample-data/blog-posts?offset=5&limit=300"
   );
   // The return value is *not* serialized
   // You can return Date, Map, Set, etc.
@@ -33,15 +27,20 @@ async function getData() {
 
 export default async function Page() {
   const data = await getData();
-  const Blogs = data.blogs;
-  console.log(Blogs[3].title);
-  const groupedData = await groupDataByCategory(Blogs);
+  const allBlogs = data.data.data;
+  console.log(allBlogs);
+  // const groupedData = await groupDataByCategory(Blogs);
+
+  // const { setData } = useContext(DataContext);
+
+  // setData(groupedData);
 
   return (
     <div>
-      <Header groupedData={groupedData} />
+      {allBlogs[0].name}
+      <Header allBlogs={allBlogs} />
       <Introduction />
-      <Demo groupedData={groupedData} />
+      <CategoryCard allBlogs={allBlogs} />
 
       <div>
         <h1>BLOG</h1>

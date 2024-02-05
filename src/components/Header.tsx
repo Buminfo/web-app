@@ -1,6 +1,21 @@
 "use client";
 import { useState } from "react";
-import { Container, Anchor, Group, Burger, Box, Image } from "@mantine/core";
+import {
+  Container,
+  Anchor,
+  Group,
+  Burger,
+  Box,
+  Image,
+  Button,
+  Drawer,
+  ScrollArea,
+  Divider,
+  Center,
+  Collapse,
+  rem,
+  useMantineTheme,
+} from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 // import { MantineLogo } from "@mantinex/mantine-logo";
 import classes from "@/styles/Header.module.css";
@@ -10,6 +25,7 @@ import {
   IconBrandFacebook,
   IconBrandTwitter,
   IconBrandYoutube,
+  IconChevronDown,
 } from "@tabler/icons-react";
 
 const userLinks = [
@@ -26,10 +42,13 @@ const mainLinks = [
   { link: "#", label: "Forums" },
 ];
 
-export function Header({ groupedData }: { groupedData: any }) {
-  const [opened, { toggle }] = useDisclosure(false);
+export function Header({ allBlogs }: { allBlogs: any }) {
+  // const [opened, { toggle }] = useDisclosure(false);
   const [active, setActive] = useState(0);
-
+  const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
+    useDisclosure(false);
+  const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
+  const theme = useMantineTheme();
   // {
   //   Object.entries(groupedData).map(([category, items]) => (
   //     <Link
@@ -47,23 +66,21 @@ export function Header({ groupedData }: { groupedData: any }) {
   //   ));
   // }
 
-  const mainItems = Object.entries(groupedData).map(
-    ([category, items]: any, index) => (
-      <Link
-        href={"/" + category}
-        key={category}
-        className={classes.mainLink}
-        data-active={index === active || undefined}
-        onClick={(event) => {
-          event.preventDefault();
-          setActive(index);
-        }}
-      >
-        {category}
-        {/* {items?.length} */}
-      </Link>
-    )
-  );
+  const mainItems = allBlogs?.map((category: any, index: any) => (
+    <Link
+      href={"/" + category.name}
+      key={category.name}
+      className={classes.mainLink}
+      data-active={index === active || undefined}
+      onClick={(event) => {
+        event.preventDefault();
+        setActive(index);
+      }}
+    >
+      {category.name}
+      {/* {items?.length} */}
+    </Link>
+  ));
 
   const secondaryItems = userLinks.map((item) => (
     <Anchor
@@ -93,8 +110,8 @@ export function Header({ groupedData }: { groupedData: any }) {
             </Group>
           </Box>
           <Burger
-            opened={opened}
-            onClick={toggle}
+            opened={drawerOpened}
+            onClick={toggleDrawer}
             className={classes.burger}
             size="sm"
             hiddenFrom="sm"
@@ -104,6 +121,48 @@ export function Header({ groupedData }: { groupedData: any }) {
           {mainItems}
         </Group>
       </Container>
+      <Drawer
+        opened={drawerOpened}
+        onClose={closeDrawer}
+        size="100%"
+        padding="md"
+        title="Navigation"
+        hiddenFrom="sm"
+        zIndex={1000000}
+      >
+        <ScrollArea h={`calc(100vh - ${rem(80)})`} mx="-md">
+          <Divider my="sm" />
+
+          <a href="#" className={classes.link}>
+            Home
+          </a>
+          <Button className={classes.link} onClick={toggleLinks}>
+            <Center inline>
+              <Box component="span" mr={5}>
+                Features
+              </Box>
+              <IconChevronDown
+                style={{ width: rem(16), height: rem(16) }}
+                color={theme.colors.blue[6]}
+              />
+            </Center>
+          </Button>
+          {/* <Collapse in={linksOpened}>{links}</Collapse> */}
+          <a href="#" className={classes.link}>
+            Learn
+          </a>
+          <a href="#" className={classes.link}>
+            Academy
+          </a>
+
+          <Divider my="sm" />
+
+          <Group justify="center" grow pb="xl" px="md">
+            <Button variant="default">Log in</Button>
+            <Button>Sign up</Button>
+          </Group>
+        </ScrollArea>
+      </Drawer>
     </header>
   );
 }

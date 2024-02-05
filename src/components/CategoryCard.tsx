@@ -4,6 +4,7 @@ import {
   Avatar,
   Badge,
   Card,
+  Container,
   Grid,
   Group,
   Image,
@@ -11,6 +12,7 @@ import {
   rem,
   useMantineTheme,
 } from "@mantine/core";
+import Share from "./buttons/share";
 import parse from "html-react-parser";
 import {
   IconBookmark,
@@ -25,26 +27,26 @@ import React from "react";
 import { IconShare } from "@tabler/icons-react";
 import classes from "@/styles/CategoryCard.module.css";
 
-function CategoryCard({ groupedData }: { groupedData: any }) {
+function CategoryCard({ allBlogs }: { allBlogs: any }) {
   const theme = useMantineTheme();
 
   const articleNum = 4;
   return (
-    <div>
-      {Object.entries(groupedData).map(([category, items]: any) => (
-        <div className={classes.categoryParent} key={category}>
+    <Container size={"100%"} my="md" mx={"xl"}>
+      {allBlogs.map((category: any) => (
+        <div className={classes.categoryParent} key={category.name}>
           <div className={classes.categoryTitleParent}>
             <Link
-              href={`/categories/${category}`}
+              href={`/categories/${category.name}`}
               className={classes.categoryTitle}
             >
-              {category}
+              {category.name}
               <span className={classes.dash}>&mdash;</span>
             </Link>
-            {items.length > 2 && (
+            {category?.length > 2 && (
               <Link
                 className={classes.categoryTitle}
-                href={`/categories/${category}`}
+                href={`/categories/${category.name}`}
               >
                 Show more
                 <span className={classes.ico}>
@@ -58,14 +60,14 @@ function CategoryCard({ groupedData }: { groupedData: any }) {
             gutter={"xl"}
             //   span={{ base: 12, xs: 6, lg: 4 }}
           >
-            {items?.slice(0, articleNum).map((post: any) => (
+            {category?.blogs.slice(0, articleNum).map((post: any) => (
               <Grid.Col
                 span={{ base: 12, xs: 4, lg: 3 }}
-                key={category}
+                key={post.slug}
                 className="category-card"
               >
                 <Card
-                  key={post.id}
+                  // key={post.id}
                   withBorder
                   padding="lg"
                   radius="md"
@@ -73,24 +75,24 @@ function CategoryCard({ groupedData }: { groupedData: any }) {
                 >
                   <Card.Section mb="sm">
                     <Image
-                      src={post.photo_url}
+                      src={post.imageUrl}
                       alt="Top 50 underrated plants for house decoration"
                       height={180}
                     />
                   </Card.Section>
 
                   <Badge w="fit-content" variant="light">
-                    {post.category}
+                    {category.name}
                   </Badge>
 
                   <Text fw={700} className={classes.title} mt="xs">
                     {post.title}
                   </Text>
-                  <Text>{post.description}</Text>
-                  {/* <div>{parse(post.content_html)}</div> */}
+                  {/* <Text>{post.title}</Text> */}
+                  {/* <div>{parse(post.description)}</div> */}
 
                   <Group mt="lg">
-                    <Avatar src={post.photo_url} radius="sm" />
+                    <Avatar src={post.imageUrl} radius="sm" />
                     <div>
                       <Text fw={500}>Elsa Gardenowl</Text>
                       <Text fz="xs" c="dimmed">
@@ -121,11 +123,12 @@ function CategoryCard({ groupedData }: { groupedData: any }) {
                           />
                         </ActionIcon>
                         <ActionIcon variant="subtle" color="gray">
-                          <IconShare
+                          {/* <IconShare
                             style={{ width: rem(20), height: rem(20) }}
                             color={theme.colors.blue[6]}
                             stroke={1.5}
-                          />
+                          /> */}
+                          <Share post={post} theme={theme} />
                         </ActionIcon>
                       </Group>
                     </Group>
@@ -138,7 +141,7 @@ function CategoryCard({ groupedData }: { groupedData: any }) {
           </Grid>
         </div>
       ))}
-    </div>
+    </Container>
   );
 }
 
