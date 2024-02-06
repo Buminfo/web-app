@@ -3,9 +3,9 @@
   display: flex;
 }
 
-.title {
+/* .title {
   font-family: Greycliff CF, var(--mantine-font-family);
-}
+} */
 
 .footer {
   padding: var(--mantine-spacing-xs) var(--mantine-spacing-lg);

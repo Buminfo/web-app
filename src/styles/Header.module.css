@@ -23,6 +23,7 @@
 
 .mainLinks {
   margin-right: calc(var(--mantine-spacing-sm) * -1);
+
   justify-content: center;
 }
 
