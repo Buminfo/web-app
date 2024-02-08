@@ -15,39 +15,42 @@ import TextTruncate from "react-text-truncate";
 import Share from "./buttons/share";
 import classes from "@/styles/CategoryCard.module.css";
 import carouselClasses from "@/styles/Carousel.module.css";
-import moment from "moment";
 import Link from "next/link";
+import Moment from "./Moment";
+// import { useEffect, useState } from "react";
 
 export function CarouselGrid({ category }: any) {
   const theme = useMantineTheme();
-
   return (
     <Carousel
       withIndicators
-      // height={200}
       slideSize={{ base: "80%", sm: "40%", md: "30%", lg: "23%" }}
       slideGap="md"
       classNames={carouselClasses}
-      // loop
       align="start"
-      slidesToScroll={3}
+      slidesToScroll={"auto"}
     >
       {category?.blogs.map((post: any) => (
         <Carousel.Slide key={post.id}>
-          <Link href={`/${category.name}/${post.slug}`}>
-            <Card withBorder padding="lg" radius="md" className={classes.card}>
-              <Card.Section mb="sm">
+          <Card withBorder padding="lg" radius="md" className={classes.card}>
+            <Card.Section mb="sm">
+              <Link
+                // onClick={() => {
+                //   GetBlogsByCategory(category.name);
+                // }}
+                href={`/${post.slug}?category=${category.name}`}
+              >
                 <Image
                   src={post.imageUrl}
                   alt="Top 50 underrated plants for house decoration"
                   height={180}
                 />
-              </Card.Section>
-
-              <Badge w="fit-content" variant="light">
-                {category.name}
-              </Badge>
-
+              </Link>
+            </Card.Section>
+            <Badge w="fit-content" variant="light">
+              <Link href={`/categories/${category.name}`}>{category.name}</Link>
+            </Badge>
+            <Link href={`/${post.slug}?category=${category.name}`}>
               <Text fw={700} className={classes.title} mt="xs">
                 <TextTruncate
                   line={2}
@@ -57,51 +60,52 @@ export function CarouselGrid({ category }: any) {
                   // textTruncateChild={<a href="#">Read on</a>}
                 />
               </Text>
-              {/* <div>{parse(post.description)}</div> */}
+            </Link>
 
-              <Group mt="lg">
-                <Avatar src={post.logo} radius="sm" />
-                <div>
-                  <Text fw={500}>{post.websiteName}</Text>
-                  <Text fz="xs" c="dimmed">
-                    posted {moment(post.created_at, "YYYYMMDDhhmmss").fromNow()}
-                  </Text>
-                </div>
-              </Group>
+            <Group mt="lg">
+              <Avatar src={post.logo} radius="sm" />
+              <div>
+                <Text fz={"xs"} fw={500}>
+                  {post.websiteName}
+                </Text>
+                <Text fz="xs" c="dimmed">
+                  posted <Moment time={post.created_at} />
+                </Text>
+              </div>
+            </Group>
 
-              <Card.Section className={classes.footer}>
-                <Group justify="space-between">
-                  <Text fz="xs" c="dimmed">
-                    733 people liked this
-                  </Text>
-                  <Group gap={0}>
-                    <ActionIcon variant="subtle" color="gray">
-                      <IconHeart
-                        style={{ width: rem(20), height: rem(20) }}
-                        color={theme.colors.red[6]}
-                        stroke={1.5}
-                      />
-                    </ActionIcon>
-                    <ActionIcon variant="subtle" color="gray">
-                      <IconBookmark
-                        style={{ width: rem(20), height: rem(20) }}
-                        color={theme.colors.yellow[6]}
-                        stroke={1.5}
-                      />
-                    </ActionIcon>
-                    <ActionIcon variant="subtle" color="gray">
-                      {/* <IconShare
+            <Card.Section className={classes.footer}>
+              <Group justify="space-between">
+                <Text fz="xs" c="dimmed">
+                  733 people liked this
+                </Text>
+                <Group gap={0}>
+                  <ActionIcon variant="subtle" color="gray">
+                    <IconHeart
+                      style={{ width: rem(20), height: rem(20) }}
+                      color={theme.colors.red[6]}
+                      stroke={1.5}
+                    />
+                  </ActionIcon>
+                  <ActionIcon variant="subtle" color="gray">
+                    <IconBookmark
+                      style={{ width: rem(20), height: rem(20) }}
+                      color={theme.colors.yellow[6]}
+                      stroke={1.5}
+                    />
+                  </ActionIcon>
+                  <ActionIcon variant="subtle" color="gray">
+                    {/* <IconShare
                             style={{ width: rem(20), height: rem(20) }}
                             color={theme.colors.blue[6]}
                             stroke={1.5}
                           /> */}
-                      <Share post={post} theme={theme} />
-                    </ActionIcon>
-                  </Group>
+                    <Share category={category} post={post} theme={theme} />
+                  </ActionIcon>
                 </Group>
-              </Card.Section>
-            </Card>
-          </Link>
+              </Group>
+            </Card.Section>
+          </Card>
         </Carousel.Slide>
       ))}
     </Carousel>

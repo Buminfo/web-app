@@ -1,6 +1,5 @@
 import CategoryCard from "@/components/CategoryCard";
 import { Introduction } from "@/components/Introduction";
-import { Header } from "@/components/Header";
 import { getData } from "../../utils/getData";
 
 export default async function Page() {
@@ -8,7 +7,6 @@ export default async function Page() {
 
   return (
     <div>
-      <Header allBlogs={allBlogs} />
       <Introduction />
       <CategoryCard allBlogs={allBlogs} />
 

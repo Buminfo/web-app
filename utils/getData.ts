@@ -1,3 +1,5 @@
+import { cache } from "react";
+
 async function fetchData() {
   const res = await fetch(
     "https://api.jsonsilo.com/public/ef9df789-0db9-4402-8bd1-d33254214790"
@@ -15,8 +17,9 @@ async function fetchData() {
   return res.json();
   // console.log(res);
 }
-export async function getData() {
+export const getData = cache(async () => {
   const data = await fetchData();
   const allBlogs = data?.data.data;
+  console.log(allBlogs);
   return allBlogs;
-}
+});

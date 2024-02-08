@@ -7,7 +7,8 @@ import "@mantine/carousel/styles.css";
 import React from "react";
 import { MantineProvider, ColorSchemeScript } from "@mantine/core";
 import { theme } from "../../theme";
-import { Providers } from "@/Providers";
+import { Header } from "@/components/Header";
+import Footer from "@/components/Footer";
 const inter = Noto_Serif({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -32,7 +33,9 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <MantineProvider defaultColorScheme="auto" theme={theme}>
-          <Providers>{children}</Providers>
+          <Header />
+          {children}
+          <Footer />
         </MantineProvider>
       </body>
     </html>

@@ -18,13 +18,13 @@ import classes from "@/styles/Share.module.css";
 // import { Popover, Transition } from "@headlessui/react";
 import { useEffect, useState } from "react";
 
-function Share({ post, theme }) {
+function Share({ category, post, theme }) {
   const [pageLink, setPageLink] = useState("");
 
   useEffect(() => {
     const baseUrl = window.location.origin;
 
-    const url = `${baseUrl}/${post.category}/${post.description}`;
+    const url = `${baseUrl}/${category.name}/${post.slug}`;
 
     setPageLink(url);
   }, []);
