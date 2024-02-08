@@ -49,7 +49,9 @@ export function Header() {
 
   const mainItems = allBlogs?.map((category: any, index: any) => (
     <Link
-      href={`/categories/${category.name}?c=${category.name}`}
+      href={`/categories/${encodeURIComponent(category.name)}?c=${
+        category.name
+      }`}
       key={category.name}
       className={classes.mainLink}
       data-active={index === active || undefined}
