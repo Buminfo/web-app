@@ -70,7 +70,9 @@ export function Header() {
       <Container size={"lg"}>
         <div className={classes.inner}>
           {/* <MantineLogo size={34} /> */}
-          <Image height={40} src={"./next.svg"} alt="dfghj" />
+          <Link href={"/"}>
+            <Image height={40} src={"./next.svg"} alt="dfghj" />
+          </Link>
           <InputSearch />
 
           <Box className={classes.links} visibleFrom="sm">

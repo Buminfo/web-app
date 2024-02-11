@@ -7,11 +7,13 @@ import { CarouselGrid } from "./Carousel";
 function CategoryCard({ allBlogs }: { allBlogs: any }) {
   return (
     <Container size={"100%"} my="md" mx={"xl"}>
-      {allBlogs.map((category: any) => (
+      {allBlogs?.map((category: any) => (
         <div className={classes.categoryParent} key={category.name}>
           <div className={classes.categoryTitleParent}>
             <Link
-              href={`/categories/${category.name}`}
+              href={`/categories/${encodeURIComponent(category.name)}?c=${
+                category.name
+              }`}
               className={classes.categoryTitle}
             >
               {category.name}
@@ -20,7 +22,9 @@ function CategoryCard({ allBlogs }: { allBlogs: any }) {
 
             <Link
               className={classes.categoryTitle}
-              href={`/categories/${category.name}`}
+              href={`/categories/${encodeURIComponent(category.name)}?c=${
+                category.name
+              }`}
             >
               Show more
               <span className={classes.ico}>

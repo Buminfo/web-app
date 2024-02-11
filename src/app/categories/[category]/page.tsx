@@ -65,7 +65,13 @@ function Page() {
                 </Link>
               </Card.Section>
               <Badge w="fit-content" variant="light">
-                <Link href={`/categories/${categoryName}`}>{categoryName}</Link>
+                <Link
+                  href={`/categories/${encodeURIComponent(
+                    categoryName
+                  )}?c=${categoryName}`}
+                >
+                  {categoryName}
+                </Link>
               </Badge>
               <Link href={`/${post.slug}?category=${categoryName}`}>
                 <Text fw={700} className={classes.title} mt="xs">

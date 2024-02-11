@@ -48,7 +48,13 @@ export function CarouselGrid({ category }: any) {
               </Link>
             </Card.Section>
             <Badge w="fit-content" variant="light">
-              <Link href={`/categories/${category.name}`}>{category.name}</Link>
+              <Link
+                href={`/categories/${encodeURIComponent(category.name)}?c=${
+                  category.name
+                }`}
+              >
+                {category.name}
+              </Link>
             </Badge>
             <Link href={`/${post.slug}?category=${category.name}`}>
               <Text fw={700} className={classes.title} mt="xs">

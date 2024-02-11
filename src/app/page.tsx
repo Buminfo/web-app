@@ -8,8 +8,8 @@ export default async function Page() {
   return (
     <div>
       <Introduction />
-      <CategoryCard allBlogs={allBlogs} />
 
+      <CategoryCard allBlogs={allBlogs} />
       <div>
         <h1>BLOG</h1>
       </div>
