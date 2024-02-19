@@ -24,7 +24,7 @@ function Share({ category, post, theme }) {
   useEffect(() => {
     const baseUrl = window.location.origin;
 
-    const url = `${baseUrl}/${category.name}/${post.slug}`;
+    const url = `${baseUrl}/${post.slug}?category=${category.name}`;
 
     setPageLink(url);
   }, []);

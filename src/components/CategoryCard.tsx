@@ -5,9 +5,10 @@ import classes from "@/styles/CategoryCard.module.css";
 import { CarouselGrid } from "./Carousel";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useEffect, useState } from "react";
+import { MainSkeleton } from "./loading";
 
 function CategoryCard({ allBlogs }: { allBlogs: any }) {
-  const [data, setData] = useState<any>([]);
+  const [data, setData] = useState<any>();
   const [pageNumber, setPageNumber] = useState<any>();
   const [hasMore, setHasMore] = useState<boolean>(true);
 
@@ -37,44 +38,48 @@ function CategoryCard({ allBlogs }: { allBlogs: any }) {
 
   return (
     <Container size={"100%"} my="md" mx={"xl"}>
-      <InfiniteScroll
-        dataLength={data.length}
-        next={fetchData}
-        hasMore={hasMore}
-        loader={<div>Loading...</div>}
-        endMessage={<div>No more data to load</div>}
-      >
-        {data?.map((category: any) => (
-          <div className={classes.categoryParent} key={category.name}>
-            <div className={classes.categoryTitleParent}>
-              <Link
-                href={`/categories/${encodeURIComponent(category.name)}?c=${
-                  category.name
-                }`}
-                className={classes.categoryTitle}
-              >
-                {category.name}
-                <span className={classes.dash}>&mdash;</span>
-              </Link>
+      {data ? (
+        <InfiniteScroll
+          dataLength={data.length}
+          next={fetchData}
+          hasMore={hasMore}
+          loader={<div>Loading...</div>}
+          endMessage={<div>No more data to load</div>}
+        >
+          {data?.map((category: any) => (
+            <div className={classes.categoryParent} key={category.name}>
+              <div className={classes.categoryTitleParent}>
+                <Link
+                  href={`/categories/${encodeURIComponent(category.name)}?c=${
+                    category.name
+                  }`}
+                  className={classes.categoryTitle}
+                >
+                  {category.name}
+                  <span className={classes.dash}>&mdash;</span>
+                </Link>
 
-              <Link
-                className={classes.categoryTitle}
-                href={`/categories/${encodeURIComponent(category.name)}?c=${
-                  category.name
-                }`}
-              >
-                Show more
-                <span className={classes.ico}>
-                  &rsaquo;
-                  {/* <IconChevronRight /> */}
-                </span>
-              </Link>
+                <Link
+                  className={classes.categoryTitle}
+                  href={`/categories/${encodeURIComponent(category.name)}?c=${
+                    category.name
+                  }`}
+                >
+                  Show more
+                  <span className={classes.ico}>
+                    &rsaquo;
+                    {/* <IconChevronRight /> */}
+                  </span>
+                </Link>
+              </div>
+
+              <CarouselGrid category={category} />
             </div>
-
-            <CarouselGrid category={category} />
-          </div>
-        ))}
-      </InfiniteScroll>
+          ))}
+        </InfiniteScroll>
+      ) : (
+        <MainSkeleton />
+      )}
     </Container>
   );
 }

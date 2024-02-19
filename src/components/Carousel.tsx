@@ -17,6 +17,8 @@ import classes from "@/styles/CategoryCard.module.css";
 import carouselClasses from "@/styles/Carousel.module.css";
 import Link from "next/link";
 import Moment from "./Moment";
+import ExtractedImage from "../../utils/extractImage";
+import Loading from "./loading";
 // import { useEffect, useState } from "react";
 
 export function CarouselGrid({ category }: any) {
@@ -40,11 +42,15 @@ export function CarouselGrid({ category }: any) {
                 // }}
                 href={`/${post.slug}?category=${category.name}`}
               >
-                <Image
-                  src={post.imageUrl}
-                  alt="Top 50 underrated plants for house decoration"
-                  height={180}
-                />
+                {post.websiteName == "Naijanews" ? (
+                  <ExtractedImage height={180} data={post.description} />
+                ) : (
+                  <Image
+                    src={post.imageUrl}
+                    alt="Top 50 underrated plants for house decoration"
+                    height={180}
+                  />
+                )}
               </Link>
             </Card.Section>
             <Badge w="fit-content" variant="light">

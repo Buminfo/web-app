@@ -23,6 +23,8 @@ import Share from "@/components/buttons/share";
 import Link from "next/link";
 import Moment from "@/components/Moment";
 import BlogDescription from "./BlogDescription";
+import ExtractedImage from "../../../utils/extractImage";
+import Skeleton from "@/components/loading";
 
 function Page({ params }: any) {
   const router = useRouter();
@@ -67,19 +69,19 @@ function Page({ params }: any) {
   }
 
   return (
-    <Container>
-      {/* <Text fs="oblique" fz="lg" c={"teal"}>
+    <>
+      {iFrame ? (
+        <iframe
+          // src="https://parewalabs.com"
+          name="iframe_target"
+          className={classes.iframe}
+        ></iframe>
+      ) : (
+        <Container>
+          {/* <Text fs="oblique" fz="lg" c={"teal"}>
         <h1>BumInfo</h1>
       </Text> */}
-      {blog ? (
-        <Container>
-          {iFrame ? (
-            <iframe
-              // src="https://parewalabs.com"
-              name="iframe_target"
-              className={classes.iframe}
-            ></iframe>
-          ) : (
+          {blog ? (
             <Container>
               <Card withBorder radius="md" p={0} className={classes.card}>
                 <Grid>
@@ -112,7 +114,11 @@ function Page({ params }: any) {
                     </div>
                   </Grid.Col>
                   <Grid.Col span={{ base: 12, sm: 6 }}>
-                    <Image src={blog.imageUrl} height={260} />
+                    {blog.websiteName == "Naijanews" ? (
+                      <ExtractedImage height={260} data={blog.description} />
+                    ) : (
+                      <Image src={blog.imageUrl} height={260} />
+                    )}
                   </Grid.Col>
                 </Grid>
               </Card>
@@ -179,23 +185,24 @@ function Page({ params }: any) {
                 </Group>
               </Card>
             </Container>
+          ) : (
+            <Skeleton />
+          )}
+          {iFrame && (
+            <Link
+              style={{ position: "absolute", left: "5%", top: "80%" }}
+              onClick={(e) => {
+                e.preventDefault();
+                setIFrame(false);
+              }}
+              href={`/${blog.slug}?category=${categoryName}`}
+            >
+              Go Back
+            </Link>
           )}
         </Container>
-      ) : (
-        <h2>Loading...</h2>
       )}
-      {iFrame && (
-        <Link
-          onClick={(e) => {
-            e.preventDefault();
-            setIFrame(false);
-          }}
-          href={`/${blog.slug}?category=${categoryName}`}
-        >
-          Go Back
-        </Link>
-      )}
-    </Container>
+    </>
   );
 }
 
