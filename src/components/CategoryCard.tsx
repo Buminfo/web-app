@@ -1,13 +1,15 @@
 "use client";
-import { Container } from "@mantine/core";
+import { Button, Container, Loader } from "@mantine/core";
 import Link from "next/link";
 import classes from "@/styles/CategoryCard.module.css";
 import { CarouselGrid } from "./Carousel";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useEffect, useState } from "react";
-import { MainSkeleton } from "./loading";
+import { MainSkeleton } from "./Skeleton";
+import { useWindowScroll } from "@mantine/hooks";
 
 function CategoryCard({ allBlogs }: { allBlogs: any }) {
+  const [scroll, scrollTo] = useWindowScroll();
   const [data, setData] = useState<any>();
   const [pageNumber, setPageNumber] = useState<any>();
   const [hasMore, setHasMore] = useState<boolean>(true);
@@ -43,7 +45,7 @@ function CategoryCard({ allBlogs }: { allBlogs: any }) {
           dataLength={data.length}
           next={fetchData}
           hasMore={hasMore}
-          loader={<div>Loading...</div>}
+          loader={<Loader color="blue" type="dots" />}
           endMessage={<div>No more data to load</div>}
         >
           {data?.map((category: any) => (
@@ -51,7 +53,7 @@ function CategoryCard({ allBlogs }: { allBlogs: any }) {
               <div className={classes.categoryTitleParent}>
                 <Link
                   href={`/categories/${encodeURIComponent(category.name)}?c=${
-                    category.name
+                    category.id
                   }`}
                   className={classes.categoryTitle}
                 >
@@ -62,7 +64,7 @@ function CategoryCard({ allBlogs }: { allBlogs: any }) {
                 <Link
                   className={classes.categoryTitle}
                   href={`/categories/${encodeURIComponent(category.name)}?c=${
-                    category.name
+                    category.id
                   }`}
                 >
                   Show more
@@ -76,6 +78,12 @@ function CategoryCard({ allBlogs }: { allBlogs: any }) {
               <CarouselGrid category={category} />
             </div>
           ))}
+          <Button
+            style={{ position: "absolute" }}
+            onClick={() => scrollTo({ y: 0 })}
+          >
+            Scroll to top
+          </Button>
         </InfiniteScroll>
       ) : (
         <MainSkeleton />

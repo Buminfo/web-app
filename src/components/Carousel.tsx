@@ -18,7 +18,7 @@ import carouselClasses from "@/styles/Carousel.module.css";
 import Link from "next/link";
 import Moment from "./Moment";
 import ExtractedImage from "../../utils/extractImage";
-import Loading from "./loading";
+import Loading from "./Skeleton";
 // import { useEffect, useState } from "react";
 
 export function CarouselGrid({ category }: any) {
@@ -40,9 +40,11 @@ export function CarouselGrid({ category }: any) {
                 // onClick={() => {
                 //   GetBlogsByCategory(category.name);
                 // }}
-                href={`/${post.slug}?category=${category.name}`}
+                href={`/${post.slug}?d=${post.id}&c=${category.name}`}
               >
-                {post.websiteName == "Naijanews" ? (
+                {post.websiteName == "Naijanews" ||
+                post.websiteName == "Jadore-fashion" ||
+                post.websiteName == "Premiumtimesng" ? (
                   <ExtractedImage height={180} data={post.description} />
                 ) : (
                   <Image
@@ -62,7 +64,7 @@ export function CarouselGrid({ category }: any) {
                 {category.name}
               </Link>
             </Badge>
-            <Link href={`/${post.slug}?category=${category.name}`}>
+            <Link href={`/${post.slug}?d=${post.id}&c=${category.name}`}>
               <Text fw={700} className={classes.title} mt="xs">
                 <TextTruncate
                   line={2}
@@ -88,9 +90,7 @@ export function CarouselGrid({ category }: any) {
 
             <Card.Section className={classes.footer}>
               <Group justify="space-between">
-                <Text fz="xs" c="dimmed">
-                  733 people liked this
-                </Text>
+                <Text fz="xs" c="dimmed"></Text>
                 <Group gap={0}>
                   <ActionIcon variant="subtle" color="gray">
                     <IconHeart

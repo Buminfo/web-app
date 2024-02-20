@@ -24,40 +24,33 @@ import Link from "next/link";
 import Moment from "@/components/Moment";
 import BlogDescription from "./BlogDescription";
 import ExtractedImage from "../../../utils/extractImage";
-import Skeleton from "@/components/loading";
+import Skeleton from "@/components/Skeleton";
+import GetOneBlog from "../../../utils/getOneBlog";
 
 function Page({ params }: any) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const category = searchParams?.get("category");
+  const id = searchParams?.get("d");
 
   const theme = useMantineTheme();
   const [blog, setBlog] = useState<any>(undefined);
 
   const slug = params.slug;
+  const category = searchParams?.get("c");
 
   const categoryName = decodeURIComponent(category!.replace(/\+/g, " "));
 
   useEffect(() => {
     async function Filter() {
-      const allBlogs = await getData();
-      const categoryBlogs = allBlogs?.find(
-        (post: any) => post.name == categoryName
-      );
-
-      if (categoryBlogs !== undefined || "") {
-        const blogs = categoryBlogs.blogs;
-        if (blogs !== undefined || "") {
-          const gottenBlog = blogs.find((post: any) => post.slug == slug);
-          if (gottenBlog !== undefined || "") {
-            setBlog(gottenBlog);
-          }
-        }
+      const data = await GetOneBlog({ id });
+      const blog = data?.data;
+      if (blog !== undefined || "") {
+        setBlog(blog);
       }
     }
 
     Filter();
-  }, [categoryName]);
+  }, [id]);
 
   const [iFrame, setIFrame] = useState(false);
 
@@ -114,7 +107,9 @@ function Page({ params }: any) {
                     </div>
                   </Grid.Col>
                   <Grid.Col span={{ base: 12, sm: 6 }}>
-                    {blog.websiteName == "Naijanews" ? (
+                    {blog.websiteName == "Naijanews" ||
+                    blog.websiteName == "Jadore-fashion" ||
+                    blog.websiteName == "Premiumtimesng" ? (
                       <ExtractedImage height={260} data={blog.description} />
                     ) : (
                       <Image src={blog.imageUrl} height={260} />

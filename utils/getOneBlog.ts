@@ -1,14 +1,8 @@
-// import { MyUserContext } from "@/dataContext";
-
-// import { getData } from "./getData";
-
-async function GetBlogsByCategory({ category }: any) {
-  console.log(category);
-  //   const { allBlogs } = MyUserContext();
+async function GetOneBlog({ id }: any) {
   async function fetchData() {
     try {
       const res = await fetch(
-        `https://buminfo-api-4ul5i.ondigitalocean.app/blog_category/${category}`
+        `https://buminfo-api-4ul5i.ondigitalocean.app/blog/${id}`
 
         // }
       );
@@ -26,14 +20,9 @@ async function GetBlogsByCategory({ category }: any) {
 
   // const Blogs = data?.data;
   return data;
-  //   return allBlogs.filter((category: any) =>
-  //     category.name.includes(categoryName)
-  //   );
-
-  // blogPosts?.find((post) => post.category == category);
 }
 
-export default GetBlogsByCategory;
+export default GetOneBlog;
 
 // Usage:
 // const post = await getPost("my-post");

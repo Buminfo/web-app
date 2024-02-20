@@ -1,4 +1,4 @@
-import { cache } from "react";
+// import { cache } from "react";
 
 async function fetchData() {
   try {
@@ -17,9 +17,9 @@ async function fetchData() {
     return res.json();
   } catch (error) {}
 }
-export const getData = cache(async () => {
+export async function getData() {
   const data = await fetchData();
   const allBlogs = data?.data.data;
   // console.log(allBlogs);
   return allBlogs;
-});
+}
