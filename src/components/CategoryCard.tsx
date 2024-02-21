@@ -6,10 +6,8 @@ import { CarouselGrid } from "./Carousel";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useEffect, useState } from "react";
 import { MainSkeleton } from "./Skeleton";
-import { useWindowScroll } from "@mantine/hooks";
 
 function CategoryCard({ allBlogs }: { allBlogs: any }) {
-  const [scroll, scrollTo] = useWindowScroll();
   const [data, setData] = useState<any>();
   const [pageNumber, setPageNumber] = useState<any>();
   const [hasMore, setHasMore] = useState<boolean>(true);
@@ -78,12 +76,6 @@ function CategoryCard({ allBlogs }: { allBlogs: any }) {
               <CarouselGrid category={category} />
             </div>
           ))}
-          <Button
-            style={{ position: "absolute" }}
-            onClick={() => scrollTo({ y: 0 })}
-          >
-            Scroll to top
-          </Button>
         </InfiniteScroll>
       ) : (
         <MainSkeleton />

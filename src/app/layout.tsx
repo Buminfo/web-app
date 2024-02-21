@@ -5,11 +5,12 @@ import "@mantine/core/styles.css";
 import "@mantine/carousel/styles.css";
 
 import React from "react";
-import { MantineProvider, ColorSchemeScript } from "@mantine/core";
+import { MantineProvider, ColorSchemeScript, Button } from "@mantine/core";
 import { theme } from "../../theme";
 import { Header } from "@/components/Header";
 import Footer from "@/components/Footer";
 import NextTopLoader from "nextjs-toploader";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const inter = Noto_Serif({ subsets: ["latin"] });
 
@@ -38,6 +39,7 @@ export default function RootLayout({
           <Header />
           <NextTopLoader />
           {children}
+          <ScrollToTop />
           <Footer />
         </MantineProvider>
       </body>

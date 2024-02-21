@@ -76,7 +76,6 @@ function Page(this: any) {
 
   return (
     <Container>
-      <h1>{category}</h1>
       {blogs ? (
         <InfiniteScroll
           dataLength={blogs.length}
@@ -110,7 +109,8 @@ function Page(this: any) {
                       // onClick={() => {
                       //   GetBlogsByCategory(categoryBlogs.name);
                       // }}
-                      href={`/${post.slug}?category=${categoryBlogs.name}`}
+                      // href={`/${post.slug}?d=${post.id}&c=${categoryBlogs.name}`}
+                      href={`/${post.slug}?d=${post.id}&c=${categoryBlogs.name}`}
                     >
                       {post.websiteName == "Naijanews" ||
                       post.websiteName == "Jadore-fashion" ||
@@ -134,7 +134,9 @@ function Page(this: any) {
                 </Link> */}
                     {categoryBlogs.name}
                   </Badge>
-                  <Link href={`/${post.slug}?category=${categoryBlogs.name}`}>
+                  <Link
+                    href={`/${post.slug}?d=${post.id}&c=${categoryBlogs.name}`}
+                  >
                     <Text fw={700} className={classes.title} mt="xs">
                       <TextTruncate
                         line={2}
