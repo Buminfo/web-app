@@ -7,15 +7,36 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { useEffect, useState } from "react";
 import { MainSkeleton } from "./Skeleton";
 
-function CategoryCard({ allBlogs }: { allBlogs: any }) {
+function CategoryCard() {
   const [data, setData] = useState<any>();
-  const [pageNumber, setPageNumber] = useState<any>();
+  const [pageNumber, setPageNumber] = useState<any>(1);
   const [hasMore, setHasMore] = useState<boolean>(true);
 
   useEffect(() => {
+    async function getData() {
+      const res = await fetch(
+        "https://buminfo-api-4ul5i.ondigitalocean.app/blog_category/post"
+      );
+      // The return value is *not* serialized
+      // You can return Date, Map, Set, etc.
+
+      if (!res.ok) {
+        // This will activate the closest `error.js` Error Boundary
+        throw new Error("Failed to fetch data");
+      }
+      const allBlogs = await res.json();
+      // const data = allBlogs?.data.data
+
+      //
+      setData(allBlogs?.data.data);
+      if (allBlogs?.data.meta.page == allBlogs?.data.meta.last_page) {
+        setHasMore(false);
+      } else {
+        setPageNumber(pageNumber + 1);
+      }
+    }
     // Fetch initial data
-    setData(allBlogs);
-    setPageNumber(2);
+    getData();
   }, []);
 
   const fetchData = async () => {

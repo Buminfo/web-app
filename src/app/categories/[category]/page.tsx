@@ -24,7 +24,7 @@ import classes from "@/styles/CategoryCard.module.css";
 import Moment from "@/components/Moment";
 import ExtractedImage from "../../../../utils/extractImage";
 import { CategorySkeleton } from "@/components/Skeleton";
-import GetBlogsByCategory from "../../../../utils/getBlogsByCategory";
+// import GetBlogsByCategory from "../../../../utils/getBlogsByCategory";
 import InfiniteScroll from "react-infinite-scroll-component";
 function Page(this: any) {
   const router = useRouter();
@@ -32,7 +32,7 @@ function Page(this: any) {
   const [blogs, setBlogs] = useState<any>(undefined);
   const [categoryBlogs, setCategoryBlogs] = useState<any>(undefined);
   // const [data, setData] = useState<any>();
-  const [pageNumber, setPageNumber] = useState<any>();
+  const [pageNumber, setPageNumber] = useState<any>(1);
   const [hasMore, setHasMore] = useState<boolean>(true);
 
   const searchParams = useSearchParams();
@@ -42,13 +42,36 @@ function Page(this: any) {
 
   useEffect(() => {
     async function Filter() {
-      const categoryBlogs = await GetBlogsByCategory({ category });
+      const res = await fetch(
+        `https://buminfo-api-4ul5i.ondigitalocean.app/blog_category/${category}`
+      );
+      // The return value is *not* serialized
+      // You can return Date, Map, Set, etc.
 
-      if (categoryBlogs !== undefined || "") {
+      if (!res.ok) {
+        // This will activate the closest `error.js` Error Boundary
+        throw new Error("Failed to fetch data");
+      }
+      const categoryBlogs = await res.json();
+      // const data = allBlogs?.data.data
+      if (categoryBlogs !== undefined && categoryBlogs !== "") {
         setCategoryBlogs(categoryBlogs.data);
         setBlogs(categoryBlogs.data.blogs.data);
-        setPageNumber(2);
+        // setPageNumber(2);
       }
+      //
+      // setData(allBlogs?.data.data);
+      if (
+        categoryBlogs?.data.blogs.meta.page ==
+        categoryBlogs?.data.blogs.meta.last_page
+      ) {
+        setHasMore(false);
+      } else {
+        setPageNumber(pageNumber + 1);
+      }
+
+      // Fetch initial data
+      getData();
     }
     if (category !== undefined) {
       Filter();
@@ -112,9 +135,7 @@ function Page(this: any) {
                       // href={`/${post.slug}?d=${post.id}&c=${categoryBlogs.name}`}
                       href={`/${post.slug}?d=${post.id}&c=${categoryBlogs.name}`}
                     >
-                      {post.websiteName == "Naijanews" ||
-                      post.websiteName == "Jadore-fashion" ||
-                      post.websiteName == "Premiumtimesng" ? (
+                      {post.imageUrl == "" ? (
                         <ExtractedImage height={180} data={post.description} />
                       ) : (
                         <Image

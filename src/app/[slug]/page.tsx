@@ -107,9 +107,7 @@ function Page({ params }: any) {
                     </div>
                   </Grid.Col>
                   <Grid.Col span={{ base: 12, sm: 6 }}>
-                    {blog.websiteName == "Naijanews" ||
-                    blog.websiteName == "Jadore-fashion" ||
-                    blog.websiteName == "Premiumtimesng" ? (
+                    {blog.imageUrl == "" ? (
                       <ExtractedImage height={260} data={blog.description} />
                     ) : (
                       <Image src={blog.imageUrl} height={260} />

@@ -24,6 +24,8 @@ const ExtractedImage = ({ data, height }) => {
         setRemovedTag(imgTagToRemove.outerHTML);
         setRemovedImgSrc(imgTagToRemove.getAttribute("src"));
         imgTagToRemove.parentNode.removeChild(imgTagToRemove);
+      } else {
+        setRemovedImgSrc("/images/buminfo.png");
       }
 
       // Get the updated blog description HTML string

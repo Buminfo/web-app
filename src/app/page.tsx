@@ -1,15 +1,15 @@
 import CategoryCard from "@/components/CategoryCard";
 import { Introduction } from "@/components/Introduction";
-import { getData } from "../../utils/getData";
+// import { getData } from "../../utils/getData";
 
 export default async function Page() {
-  const allBlogs = await getData();
+  // const allBlogs = await getData();
 
   return (
     <div>
       <Introduction />
 
-      <CategoryCard allBlogs={allBlogs} />
+      <CategoryCard />
       <div>
         <h1>BLOG</h1>
       </div>

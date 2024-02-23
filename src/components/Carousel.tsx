@@ -42,9 +42,7 @@ export function CarouselGrid({ category }: any) {
                 // }}
                 href={`/${post.slug}?d=${post.id}&c=${category.name}`}
               >
-                {post.websiteName == "Naijanews" ||
-                post.websiteName == "Jadore-fashion" ||
-                post.websiteName == "Premiumtimesng" ? (
+                {post.imageUrl == "" ? (
                   <ExtractedImage height={180} data={post.description} />
                 ) : (
                   <Image
