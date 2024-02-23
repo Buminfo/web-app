@@ -42,7 +42,7 @@ export function CarouselGrid({ category }: any) {
                 // }}
                 href={`/${post.slug}?d=${post.id}&c=${category.name}&cd=${category.id}`}
               >
-                {post.imageUrl == "" ? (
+                {post.imageUrl == "" || post.imageUrl == null ? (
                   <ExtractedImage height={180} data={post.description} />
                 ) : (
                   <Image
