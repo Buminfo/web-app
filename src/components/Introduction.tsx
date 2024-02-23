@@ -46,9 +46,11 @@ export function Introduction() {
         </Grid.Col>
         <Grid.Col span={{ base: 12, lg: 6 }}>
           <Image
-            src="./next.svg"
+            src="/images/buminfo.png"
             alt="img"
-            height={180}
+            // height={0}
+            radius={"lg"}
+            mah={250}
             className={classes.imae}
           />
         </Grid.Col>

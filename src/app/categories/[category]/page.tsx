@@ -18,13 +18,11 @@ import TextTruncate from "react-text-truncate";
 import Share from "@/components/buttons/share";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { getData } from "../../../../utils/getData";
 import { useRouter, useSearchParams } from "next/navigation";
 import classes from "@/styles/CategoryCard.module.css";
 import Moment from "@/components/Moment";
 import ExtractedImage from "../../../../utils/extractImage";
 import { CategorySkeleton } from "@/components/Skeleton";
-// import GetBlogsByCategory from "../../../../utils/getBlogsByCategory";
 import InfiniteScroll from "react-infinite-scroll-component";
 function Page(this: any) {
   const router = useRouter();
@@ -71,7 +69,6 @@ function Page(this: any) {
       }
 
       // Fetch initial data
-      getData();
     }
     if (category !== undefined) {
       Filter();
@@ -133,7 +130,7 @@ function Page(this: any) {
                       //   GetBlogsByCategory(categoryBlogs.name);
                       // }}
                       // href={`/${post.slug}?d=${post.id}&c=${categoryBlogs.name}`}
-                      href={`/${post.slug}?d=${post.id}&c=${categoryBlogs.name}`}
+                      href={`/${post.slug}?d=${post.id}&c=${categoryBlogs.name}&cd=${categoryBlogs.id}`}
                     >
                       {post.imageUrl == "" ? (
                         <ExtractedImage height={180} data={post.description} />
@@ -156,7 +153,7 @@ function Page(this: any) {
                     {categoryBlogs.name}
                   </Badge>
                   <Link
-                    href={`/${post.slug}?d=${post.id}&c=${categoryBlogs.name}`}
+                    href={`/${post.slug}?d=${post.id}&c=${categoryBlogs.name}&cd=${categoryBlogs.id}`}
                   >
                     <Text fw={700} className={classes.title} mt="xs">
                       <TextTruncate

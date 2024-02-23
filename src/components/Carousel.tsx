@@ -40,7 +40,7 @@ export function CarouselGrid({ category }: any) {
                 // onClick={() => {
                 //   GetBlogsByCategory(category.name);
                 // }}
-                href={`/${post.slug}?d=${post.id}&c=${category.name}`}
+                href={`/${post.slug}?d=${post.id}&c=${category.name}&cd=${category.id}`}
               >
                 {post.imageUrl == "" ? (
                   <ExtractedImage height={180} data={post.description} />
@@ -62,7 +62,9 @@ export function CarouselGrid({ category }: any) {
                 {category.name}
               </Link>
             </Badge>
-            <Link href={`/${post.slug}?d=${post.id}&c=${category.name}`}>
+            <Link
+              href={`/${post.slug}?d=${post.id}&c=${category.name}&cd=${category.id}`}
+            >
               <Text fw={700} className={classes.title} mt="xs">
                 <TextTruncate
                   line={2}

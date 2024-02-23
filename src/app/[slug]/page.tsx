@@ -26,6 +26,7 @@ import BlogDescription from "./BlogDescription";
 import ExtractedImage from "../../../utils/extractImage";
 import Skeleton from "@/components/Skeleton";
 import GetOneBlog from "../../../utils/getOneBlog";
+import RelatedNews from "@/components/RelatedNews";
 
 function Page({ params }: any) {
   const router = useRouter();
@@ -37,6 +38,7 @@ function Page({ params }: any) {
 
   const slug = params.slug;
   const category = searchParams?.get("c");
+  const categoryId = searchParams?.get("cd");
 
   const categoryName = decodeURIComponent(category!.replace(/\+/g, " "));
 
@@ -193,6 +195,7 @@ function Page({ params }: any) {
               Go Back
             </Link>
           )}
+          <RelatedNews category={categoryId} />
         </Container>
       )}
     </>
