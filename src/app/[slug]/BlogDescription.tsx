@@ -1,29 +1,55 @@
 import { useEffect, useState } from "react";
+import classes from "./BlogDescription.module.css";
 
-const BlogDescription = ({ description }: any) => {
-  const [blogDescription, setBlogDescription] = useState("");
-
+export default function BlogDescription({ description }: any) {
   useEffect(() => {
-    // Simulating fetching the blog description from the backend
-    const fetchBlogDescription = async () => {
-      // Manipulate the HTML string to remove the specific tag
-      const updatedDescription = description.replace(
-        /<a\b[^>]*>(.*?)<\/a>/gi,
-        ""
-      );
+    const tempElement = document.createElement("div");
+    tempElement.innerHTML = description;
 
-      // Set the updated blog description state
-      setBlogDescription(updatedDescription);
-    };
+    const imgTags = tempElement.getElementsByTagName("img");
+    if (imgTags.length !== 0) {
+      for (let i = 0; i < imgTags.length; i++) {
+        const img = imgTags[i];
+        img.classList.add(classes.img);
+        // img.style.width = "100px"; // Set the desired width
+        // img.style.height = "100px"; // Set the desired height
+      }
+    }
 
-    fetchBlogDescription();
-  }, [description]);
+    setModifiedHtmlDescription(tempElement.innerHTML);
+  }, []);
 
-  return (
-    <div>
-      <div dangerouslySetInnerHTML={{ __html: blogDescription }} />
-    </div>
-  );
-};
+  const [modifiedHtmlDescription, setModifiedHtmlDescription] = useState("");
 
-export default BlogDescription;
+  return <div dangerouslySetInnerHTML={{ __html: modifiedHtmlDescription }} />;
+}
+
+// import { useEffect, useState } from "react";
+
+// const BlogDescription = ({ description }: any) => {
+//   const [blogDescription, setBlogDescription] = useState("");
+
+//   useEffect(() => {
+//     // Simulating fetching the blog description from the backend
+//     const fetchBlogDescription = async () => {
+//       // Manipulate the HTML string to remove the specific tag
+//       const updatedDescription = description.replace(
+//         /<a\b[^>]*>(.*?)<\/a>/gi,
+//         ""
+//       );
+
+//       // Set the updated blog description state
+//       setBlogDescription(updatedDescription);
+//     };
+
+//     fetchBlogDescription();
+//   }, [description]);
+
+//   return (
+//     <div>
+//       <div dangerouslySetInnerHTML={{ __html: blogDescription }} />
+//     </div>
+//   );
+// };
+
+// export default BlogDescription;

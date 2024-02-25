@@ -1,0 +1,17 @@
+.img {
+  max-height: 500px;
+  width: auto;
+}
+@media (max-width: 48em) {
+  .img {
+    max-height: 200px;
+    width: auto;
+  }
+}
+
+@media (max-width: 30em) {
+  .img {
+    height: 180px;
+    width: auto;
+  }
+}
