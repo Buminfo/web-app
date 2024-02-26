@@ -109,7 +109,9 @@ function Page({ params }: any) {
                     </div>
                   </Grid.Col>
                   <Grid.Col span={{ base: 12, sm: 6 }}>
-                    {blog.imageUrl == "" || blog.imageUrl == null ? (
+                    {blog.imageUrl == "" ||
+                    blog.imageUrl == null ||
+                    !blog.imageUrl.startsWith("https://") ? (
                       <ExtractedImage height={260} data={blog.description} />
                     ) : (
                       <Image src={blog.imageUrl} height={260} />
