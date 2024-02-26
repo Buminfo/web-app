@@ -7,7 +7,7 @@ function Moment({ time }: any) {
   // var expected_enddate = moment(timestring2);
   var returned_date = moment(startdate).add(1, "hours"); // see the cloning?
   // returned_endate.isSame(expected_enddate); // true
-  return <span> {moment(returned_date, "YYYYMMDDhhmmss").fromNow()}</span>;
+  return <span> {moment(startdate, "YYYYMMDDhhmmss").fromNow()}</span>;
 }
 
 export default Moment;

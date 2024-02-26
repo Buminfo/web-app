@@ -30,7 +30,7 @@ function Footer() {
         </Grid.Col>
         <Grid.Col
           style={{
-            backgroundColor: `var(--mantine-color-blue-6)`,
+            backgroundColor: "#3f4b75",
             borderRadius: "20px",
           }}
           // bg={"blue"}
@@ -46,8 +46,9 @@ function Footer() {
 
             <div className={classes.fields}>
               <TextInput
+                // variant="light"
                 type="email"
-                label="Your email"
+                label={<span style={{ color: "white" }}>Your email</span>}
                 placeholder="hello@buminfo.dev"
                 required
               />

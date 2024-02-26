@@ -47,7 +47,20 @@ export function Header() {
   const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
   const theme = useMantineTheme();
 
-  const mainItems = allBlogs?.map((category: any, index: any) => (
+  const mainLink = [
+    { name: "Nigeria", id: 89 },
+
+    { name: "News", id: 6 },
+    // { name: "Latest", id: 5 },
+    { name: "Sport", id: 5 },
+    { name: "Politics", id: 12 },
+    { name: "Entertainment", id: 21 },
+    { name: "Business", id: 23 },
+    { name: "Technology", id: 47 },
+    { name: "Health", id: 13 },
+  ];
+
+  const mainItems = mainLink.map((category: any, index: any) => (
     <Link
       href={`/categories/${encodeURIComponent(category.name)}?c=${category.id}`}
       key={category.name}

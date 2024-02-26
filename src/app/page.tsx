@@ -10,9 +10,9 @@ export default async function Page() {
       <Introduction />
 
       <CategoryCard />
-      <div>
+      {/* <div>
         <h1>BLOG</h1>
-      </div>
+      </div> */}
     </div>
   );
 }

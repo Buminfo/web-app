@@ -16,6 +16,7 @@ function ScrollToTop() {
             position: "fixed",
             right: 15,
             bottom: 20,
+            zIndex: 1000000,
             // backgroundColor: "blue",
           }}
           onClick={() => scrollTo({ y: 0 })}
