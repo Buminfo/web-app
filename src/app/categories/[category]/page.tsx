@@ -132,7 +132,9 @@ function Page(this: any) {
                       // href={`/${post.slug}?d=${post.id}&c=${categoryBlogs.name}`}
                       href={`/${post.slug}?d=${post.id}&c=${categoryBlogs.name}&cd=${categoryBlogs.id}`}
                     >
-                      {post.imageUrl == "" || post.imageUrl == null ? (
+                      {post.imageUrl == "" ||
+                      post.imageUrl == null ||
+                      !post.imageUrl.startsWith("https://") ? (
                         <ExtractedImage height={180} data={post.description} />
                       ) : (
                         <Image
