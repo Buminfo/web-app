@@ -68,34 +68,38 @@ function CategoryCard() {
           endMessage={<div>No more data to load</div>}
         >
           {data?.map((category: any) => (
-            <div className={classes.categoryParent} key={category.name}>
-              <div className={classes.categoryTitleParent}>
-                <Link
-                  href={`/categories/${encodeURIComponent(category.name)}?c=${
-                    category.id
-                  }`}
-                  className={classes.categoryTitle}
-                >
-                  {category.name}
-                  <span className={classes.dash}>&mdash;</span>
-                </Link>
+            <>
+              {category?.blogs.length >= 5 && (
+                <div className={classes.categoryParent} key={category.name}>
+                  <div className={classes.categoryTitleParent}>
+                    <Link
+                      href={`/categories/${encodeURIComponent(
+                        category.name
+                      )}?c=${category.id}`}
+                      className={classes.categoryTitle}
+                    >
+                      {category.name}
+                      <span className={classes.dash}>&mdash;</span>
+                    </Link>
 
-                <Link
-                  className={classes.categoryTitle}
-                  href={`/categories/${encodeURIComponent(category.name)}?c=${
-                    category.id
-                  }`}
-                >
-                  Show more
-                  <span className={classes.ico}>
-                    &rsaquo;
-                    {/* <IconChevronRight /> */}
-                  </span>
-                </Link>
-              </div>
+                    <Link
+                      className={classes.categoryTitle}
+                      href={`/categories/${encodeURIComponent(
+                        category.name
+                      )}?c=${category.id}`}
+                    >
+                      Show more
+                      <span className={classes.ico}>
+                        &rsaquo;
+                        {/* <IconChevronRight /> */}
+                      </span>
+                    </Link>
+                  </div>
 
-              <CarouselGrid category={category} />
-            </div>
+                  <CarouselGrid category={category} />
+                </div>
+              )}
+            </>
           ))}
         </InfiniteScroll>
       ) : (

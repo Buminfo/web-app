@@ -134,7 +134,8 @@ function Page(this: any) {
                     >
                       {post.imageUrl == "" ||
                       post.imageUrl == null ||
-                      !post.imageUrl.startsWith("https://") ? (
+                      !post.imageUrl.startsWith("https://") ||
+                      post.imageUrl.endsWith(".mp4") ? (
                         <ExtractedImage height={180} data={post.description} />
                       ) : (
                         <Image

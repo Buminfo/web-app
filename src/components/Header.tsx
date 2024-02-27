@@ -15,6 +15,7 @@ import {
   Collapse,
   rem,
   useMantineTheme,
+  Select,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 // import { MantineLogo } from "@mantinex/mantine-logo";
@@ -32,12 +33,37 @@ import { usePathname, useRouter } from "next/navigation";
 
 export function Header() {
   const [allBlogs, setallBlogs] = useState<any>();
+  const [categories, setCategories] = useState<any>();
+
   useEffect(() => {
     async function fetchData() {
       const blogs = await getData();
       setallBlogs(blogs);
     }
 
+    async function GetAllCategories() {
+      async function fetchCategories() {
+        try {
+          const res = await fetch(
+            `https://buminfo-api-4ul5i.ondigitalocean.app/blog_category`
+
+            // }
+          );
+          // The return value is *not* serialized
+          // You can return Date, Map, Set, etc.
+
+          if (!res.ok) {
+            // This will activate the closest `error.js` Error Boundary
+            throw new Error("Failed to fetch data");
+          }
+          return res.json();
+        } catch (error) {}
+      }
+      const data = await fetchCategories();
+      setCategories(data?.data);
+    }
+
+    GetAllCategories();
     fetchData();
   }, []);
 
@@ -62,7 +88,26 @@ export function Header() {
     { name: "Technology", id: 47 },
     { name: "Health", id: 13 },
   ];
-
+  const categoryLinks = categories?.map(
+    (category: any, index: any) =>
+      // (
+      //   <Link
+      //     href={`/categories/${encodeURIComponent(category.name)}?c=${category.id}`}
+      //     key={category.name}
+      //     // className={classes.mainLink}
+      //     // data-active={index === active || undefined}
+      //     onClick={(event) => {
+      //       // router().
+      //       // event.preventDefault();
+      //       setUnHome(undefined);
+      //       setActive(index);
+      //     }}
+      //   >
+      `label: ${category.name}, value:${category.id}`
+    //     {/* {items?.length} */}
+    //   </Link>
+    // )
+  );
   const mainItems = mainLink.map((category: any, index: any) => (
     <Link
       href={`/categories/${encodeURIComponent(category.name)}?c=${category.id}`}
@@ -122,6 +167,16 @@ export function Header() {
             Home
           </Link>
           {mainItems}
+          <Select
+            // label="Other Categories"
+            variant="filled"
+            radius="lg"
+            placeholder="Search other categories"
+            data={categoryLinks}
+            comboboxProps={{ shadow: "md" }}
+            searchable
+            nothingFoundMessage="Category Not found..."
+          />
         </Group>
       </Container>
       <Drawer
