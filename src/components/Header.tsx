@@ -28,18 +28,21 @@ import {
   IconBrandYoutube,
   IconChevronDown,
 } from "@tabler/icons-react";
-import { getData } from "../../utils/getData";
+// import { getData } from "../../utils/getData";
 import { usePathname, useRouter } from "next/navigation";
 
 export function Header() {
-  const [allBlogs, setallBlogs] = useState<any>();
+  // const [allBlogs, setallBlogs] = useState<any>();
+  const [value, setValue] = useState<any>();
   const [categories, setCategories] = useState<any>();
 
+  const router = useRouter();
+
   useEffect(() => {
-    async function fetchData() {
-      const blogs = await getData();
-      setallBlogs(blogs);
-    }
+    // async function fetchData() {
+    //   const blogs = await getData();
+    //   setallBlogs(blogs);
+    // }
 
     async function GetAllCategories() {
       async function fetchCategories() {
@@ -60,11 +63,16 @@ export function Header() {
         } catch (error) {}
       }
       const data = await fetchCategories();
-      setCategories(data?.data);
+      const cate = data?.data;
+      const mappedOptions = cate?.map((item: any) => ({
+        label: item.name,
+        value: item.id.toString(),
+      }));
+      setCategories(mappedOptions);
     }
 
     GetAllCategories();
-    fetchData();
+    // fetchData();
   }, []);
 
   const pathname = usePathname;
@@ -88,26 +96,12 @@ export function Header() {
     { name: "Technology", id: 47 },
     { name: "Health", id: 13 },
   ];
-  const categoryLinks = categories?.map(
-    (category: any, index: any) =>
-      // (
-      //   <Link
-      //     href={`/categories/${encodeURIComponent(category.name)}?c=${category.id}`}
-      //     key={category.name}
-      //     // className={classes.mainLink}
-      //     // data-active={index === active || undefined}
-      //     onClick={(event) => {
-      //       // router().
-      //       // event.preventDefault();
-      //       setUnHome(undefined);
-      //       setActive(index);
-      //     }}
-      //   >
-      `label: ${category.name}, value:${category.id}`
-    //     {/* {items?.length} */}
-    //   </Link>
-    // )
-  );
+  // const categoryLinks = categories?.map(
+  //   (category: any, index: any) =>
+
+  //     `label: ${category.name}, value:${category.id}`
+
+  // );
   const mainItems = mainLink.map((category: any, index: any) => (
     <Link
       href={`/categories/${encodeURIComponent(category.name)}?c=${category.id}`}
@@ -169,10 +163,20 @@ export function Header() {
           {mainItems}
           <Select
             // label="Other Categories"
+            value={value ? value.value : null}
+            onChange={(_value, option) => {
+              router.push(
+                `/categories/${encodeURIComponent(option.label)}?c=${
+                  option.value
+                }`
+              );
+
+              setValue(option);
+            }}
             variant="filled"
             radius="lg"
             placeholder="Search other categories"
-            data={categoryLinks}
+            data={categories}
             comboboxProps={{ shadow: "md" }}
             searchable
             nothingFoundMessage="Category Not found..."
