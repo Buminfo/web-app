@@ -28,6 +28,7 @@ import {
   IconChevronDown,
 } from "@tabler/icons-react";
 import { getData } from "../../utils/getData";
+import { usePathname, useRouter } from "next/navigation";
 
 export function Header() {
   const [allBlogs, setallBlogs] = useState<any>();
@@ -40,8 +41,10 @@ export function Header() {
     fetchData();
   }, []);
 
+  const pathname = usePathname;
   // const [opened, { toggle }] = useDisclosure(false);
-  const [active, setActive] = useState();
+  const [active, setActive] = useState<any>("Home");
+  const [unHome, setUnHome] = useState<any>("/");
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
     useDisclosure(false);
   const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
@@ -67,7 +70,9 @@ export function Header() {
       className={classes.mainLink}
       data-active={index === active || undefined}
       onClick={(event) => {
+        // router().
         // event.preventDefault();
+        setUnHome(undefined);
         setActive(index);
       }}
     >
@@ -103,6 +108,19 @@ export function Header() {
           />
         </div>
         <Group gap={0} justify="flex-end" className={classes.mainLinks}>
+          <Link
+            href={"/"}
+            // key={category.name}
+            className={classes.mainLink}
+            data-active={pathname.toString() == "/" || unHome}
+            onClick={(event) => {
+              // event.preventDefault();
+              setUnHome("/");
+              setActive("Home");
+            }}
+          >
+            Home
+          </Link>
           {mainItems}
         </Group>
       </Container>
