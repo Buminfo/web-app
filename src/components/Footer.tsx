@@ -11,57 +11,46 @@ function Footer() {
   // Copyright © 2024. buminfo.com - All rights reserved
   return (
     <Container size={"lg"} mt={"xl"} mb={"xl"}>
-      <Grid>
-        <Grid.Col
-          span={{ base: 12, md: 6 }}
-          style={{ display: "flex", justifyContent: "space-between" }}
-        >
-          <Link href={"/"}>Home</Link>
-          <Link href={"/"}> About Us</Link>
-          <Link href={"/"}>Contact Us </Link>
-          <Link href={"/"}>Disclaimer</Link>
-          <Link href={"/"}>Privacy Policy</Link>
-          <a href={"/"}>
-            <IconBrandFacebook />
-          </a>
-          <a href={"/"}>
-            <IconBrandTwitter />
-          </a>
-        </Grid.Col>
-        <Grid.Col
-          style={{
-            backgroundColor: "#3f4b75",
-            borderRadius: "20px",
-          }}
-          // bg={"blue"}
-          span={{ base: 12, md: 6 }}
-        >
-          <form
-            className={classes.form}
-            // onSubmit={(event) => event.preventDefault()}
-          >
-            <Text c={"#fff"} fz="lg" fw={700} className={classes.title}>
-              Sign Up for Newsletter
-            </Text>
+      <Link href={"/"}>Home</Link>
+      <Link href={"/"}> About Us</Link>
+      <Link href={"/"}>Contact Us </Link>
+      <Link href={"/"}>Disclaimer</Link>
+      <Link href={"/"}>Privacy Policy</Link>
+      <a href={"/"}>
+        <IconBrandFacebook />
+      </a>
+      <a href={"/"}>
+        <IconBrandTwitter />
+      </a>
+      <div
+        style={{
+          backgroundColor: "#3f4b75",
+          borderRadius: "20px",
+        }}
+      >
+        <form className={classes.form}>
+          <Text c={"#fff"} fz="lg" fw={700} className={classes.title}>
+            Sign Up for Newsletter
+          </Text>
 
-            <div className={classes.fields}>
-              <TextInput
-                // variant="light"
-                type="email"
-                label={<span style={{ color: "white" }}>Your email</span>}
-                placeholder="hello@buminfo.dev"
-                required
-              />
+          <div className={classes.fields}>
+            <TextInput
+              // variant="light"
+              type="email"
+              label={<span style={{ color: "white" }}>Your email</span>}
+              placeholder="hello@buminfo.dev"
+              required
+            />
 
-              <Group justify="flex-end" mt="md">
-                <Button type="submit" className={classes.control}>
-                  Sign Up
-                </Button>
-              </Group>
-            </div>
-          </form>
-        </Grid.Col>
-      </Grid>
+            <Group justify="flex-end" mt="md">
+              <Button type="submit" className={classes.control}>
+                Sign Up
+              </Button>
+            </Group>
+          </div>
+        </form>
+      </div>
+      {/* </Grid> */}
     </Container>
   );
 }
