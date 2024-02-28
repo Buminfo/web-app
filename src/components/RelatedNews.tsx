@@ -36,7 +36,7 @@ function RelatedNews({ category }: any) {
 
       if (!res.ok) {
         // This will activate the closest `error.js` Error Boundary
-        throw new Error("Failed to fetch data");
+        console.log("Failed to fetch data");
       }
       const categoryBlogs = await res.json();
       // const data = allBlogs?.data.data
@@ -82,7 +82,11 @@ function RelatedNews({ category }: any) {
                   href={`/${post.slug}?d=${post.id}&c=${categoryBlogs.name}&cd=${categoryBlogs.id}`}
                 >
                   {post.imageUrl == "" || post.imageUrl == null ? (
-                    <ExtractedImage height={180} data={post.description} />
+                    <ExtractedImage
+                      logo={post.logo}
+                      height={180}
+                      data={post.description}
+                    />
                   ) : (
                     <Image
                       src={post.imageUrl}

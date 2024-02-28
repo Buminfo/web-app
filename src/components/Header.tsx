@@ -98,7 +98,7 @@ export function Header() {
         <div className={classes.inner}>
           {/* <MantineLogo size={34} /> */}
           <Link href={"/"}>
-            <Image height={40} src={"./next.svg"} alt="dfghj" />
+            <Image mah={50} w={"auto"} src={"/logo.png"} alt="dfghj" />
           </Link>
           <InputSearch />
 

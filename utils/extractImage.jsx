@@ -1,7 +1,7 @@
 import { Image } from "@mantine/core";
 import { useEffect, useState } from "react";
 
-const ExtractedImage = ({ data, height }) => {
+const ExtractedImage = ({ logo, data, height }) => {
   const [blogDescription, setBlogDescription] = useState("");
   const [removedTag, setRemovedTag] = useState("");
   const [removedImgSrc, setRemovedImgSrc] = useState("");
@@ -25,7 +25,7 @@ const ExtractedImage = ({ data, height }) => {
         setRemovedImgSrc(imgTagToRemove.getAttribute("src"));
         imgTagToRemove.parentNode.removeChild(imgTagToRemove);
       } else {
-        setRemovedImgSrc("/images/buminfo.png");
+        setRemovedImgSrc(logo);
       }
 
       // Get the updated blog description HTML string

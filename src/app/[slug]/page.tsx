@@ -113,7 +113,11 @@ function Page({ params }: any) {
                     blog.imageUrl == null ||
                     !blog.imageUrl.startsWith("https://") ||
                     blog.imageUrl.endsWith(".mp4") ? (
-                      <ExtractedImage height={260} data={blog.description} />
+                      <ExtractedImage
+                        logo={blog.logo}
+                        height={260}
+                        data={blog.description}
+                      />
                     ) : (
                       <Image
                         alt={blog.title}

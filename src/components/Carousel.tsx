@@ -46,7 +46,11 @@ export function CarouselGrid({ category }: any) {
                 post.imageUrl == null ||
                 !post.imageUrl.startsWith("https://") ||
                 post.imageUrl.endsWith(".mp4") ? (
-                  <ExtractedImage height={180} data={post.description} />
+                  <ExtractedImage
+                    logo={post.logo}
+                    height={180}
+                    data={post.description}
+                  />
                 ) : (
                   <Image
                     src={post.imageUrl}
