@@ -13,15 +13,6 @@ export function Introduction() {
         mah={250}
         className={classes.image}
       />
-      <Title className={classes.title}>
-        Welcome to <span className={classes.highlight}>Buminfo</span>
-      </Title>
-      <Text c="dimmed" mt="md">
-        Buminfo: Your ultimate news blog. Stay informed with accurate, engaging
-        coverage. Politics, tech, science, entertainment, sports, and more. Join
-        us as we explore the world&apos;s stories. Trust Buminfo for the latest
-        updates.
-      </Text>
     </Container>
   );
 }

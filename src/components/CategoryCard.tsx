@@ -1,11 +1,12 @@
 "use client";
-import { Button, Container, Loader } from "@mantine/core";
+import { Box, Button, Container, Loader } from "@mantine/core";
 import Link from "next/link";
 import classes from "@/styles/CategoryCard.module.css";
 import { CarouselGrid } from "./Carousel";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useEffect, useState } from "react";
 import { MainSkeleton } from "./Skeleton";
+import PostCard from "./PostCard";
 
 function CategoryCard() {
   const [data, setData] = useState<any>();
@@ -81,7 +82,26 @@ function CategoryCard() {
                       {category.name}
                       <span className={classes.dash}>&mdash;</span>
                     </Link>
-
+                    <Box visibleFrom="md">
+                      <Link
+                        className={classes.categoryTitle}
+                        href={`/categories/${encodeURIComponent(
+                          category.name
+                        )}?c=${category.id}`}
+                      >
+                        Show more
+                        <span className={classes.ico}>
+                          &rsaquo;
+                          {/* <IconChevronRight /> */}
+                        </span>
+                      </Link>
+                    </Box>
+                  </div>
+                  <PostCard category={category} />
+                  <Box
+                    style={{ display: "flex", justifyContent: "end" }}
+                    hiddenFrom="md"
+                  >
                     <Link
                       className={classes.categoryTitle}
                       href={`/categories/${encodeURIComponent(
@@ -94,9 +114,8 @@ function CategoryCard() {
                         {/* <IconChevronRight /> */}
                       </span>
                     </Link>
-                  </div>
-
-                  <CarouselGrid category={category} />
+                  </Box>
+                  {/* <CarouselGrid category={category} /> */}
                 </div>
               )}
             </>

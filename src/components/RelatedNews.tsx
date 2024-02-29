@@ -81,7 +81,10 @@ function RelatedNews({ category }: any) {
                   // href={`/${post.slug}?d=${post.id}&c=${categoryBlogs.name}`}
                   href={`/${post.slug}?d=${post.id}&c=${categoryBlogs.name}&cd=${categoryBlogs.id}`}
                 >
-                  {post.imageUrl == "" || post.imageUrl == null ? (
+                  {post.imageUrl == "" ||
+                  post.imageUrl == null ||
+                  !post.imageUrl.startsWith("https://") ||
+                  post.imageUrl.endsWith(".mp4") ? (
                     <ExtractedImage
                       logo={post.logo}
                       height={180}
