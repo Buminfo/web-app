@@ -2,7 +2,6 @@
 import { Box, Button, Container, Loader } from "@mantine/core";
 import Link from "next/link";
 import classes from "@/styles/CategoryCard.module.css";
-import { CarouselGrid } from "./Carousel";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useEffect, useState } from "react";
 import { MainSkeleton } from "./Skeleton";
@@ -97,7 +96,11 @@ function CategoryCard() {
                       </Link>
                     </Box>
                   </div>
-                  <PostCard category={category} />
+                  <PostCard
+                    category={category}
+                    posts={category.blogs}
+                    slice={true}
+                  />
                   <Box
                     style={{ display: "flex", justifyContent: "end" }}
                     hiddenFrom="md"

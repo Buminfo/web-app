@@ -1,5 +1,4 @@
 "use client";
-import { Button } from "@mantine/core";
 import { useWindowScroll } from "@mantine/hooks";
 import {
   IconSquareArrowUpFilled,

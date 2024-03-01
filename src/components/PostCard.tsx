@@ -13,7 +13,7 @@ import {
   useMantineTheme,
 } from "@mantine/core";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ExtractedImage from "../../utils/extractImage";
 import TextTruncate from "react-text-truncate";
 import Moment from "./Moment";
@@ -21,13 +21,23 @@ import { IconBookmark, IconHeart } from "@tabler/icons-react";
 import Share from "./buttons/share";
 import classes from "@/styles/CategoryCard.module.css";
 
-function PostCard({ category }: any) {
+function PostCard({ category, posts, slice }: any) {
   const theme = useMantineTheme();
+  const [blogs, setBlogs] = useState<number>();
+  const [md, setMd] = useState<number>(4);
+  // const [xs, setXs] = useState<number>()
   //   const category = categoryBlogs?.name;
+  useEffect(() => {
+    if (slice) {
+      setBlogs(4);
+      setMd(3);
+    }
+  }, [slice]);
+
   return (
     <Grid mt={"xl"} justify="center">
-      {category?.blogs.slice(0, 4).map((post: any) => (
-        <Grid.Col key={post.id} span={{ base: 12, xs: 6, md: 3 }}>
+      {posts?.slice(0, blogs).map((post: any) => (
+        <Grid.Col key={post.id} span={{ base: 12, xs: 6, md: md }}>
           <Card withBorder padding="lg" radius="md" className={classes.card}>
             <Card.Section mb="sm">
               <Link
