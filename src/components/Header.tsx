@@ -46,10 +46,12 @@ export function Header() {
       }
       const data = await fetchCategories();
       const cate = data?.data;
-      const mappedOptions = cate?.map((item: any) => ({
-        label: item.name,
-        value: item.id.toString(),
-      }));
+      const mappedOptions = cate
+        ?.sort((a: any, b: any) => a.name.localeCompare(b.name))
+        .map((item: any) => ({
+          label: item.name,
+          value: item.id.toString(),
+        }));
       setCategories(mappedOptions);
     }
 
