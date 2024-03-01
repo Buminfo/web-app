@@ -106,8 +106,10 @@ export function Header() {
 
           <Box className={classes.links} visibleFrom="sm">
             <Group justify="flex-end">
-              <IconBrandYoutube />
-              <IconBrandFacebook />
+              <a target="_blank" href="https://www.youtube.com/@buminfoHQ">
+                <IconBrandYoutube color="red" />
+              </a>
+              <IconBrandFacebook color="blue" />
               <IconBrandTwitter />
             </Group>
           </Box>
