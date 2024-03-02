@@ -199,8 +199,8 @@ function Page({ params }: any) {
               <Button
                 style={{
                   position: "fixed",
-                  right: "5%",
-                  top: "84%",
+                  left: "5%",
+                  top: "88%",
                   zIndex: 910,
                 }}
                 className={classes.modalButton}
