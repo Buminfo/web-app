@@ -5,7 +5,7 @@ import "@mantine/core/styles.css";
 import "@mantine/carousel/styles.css";
 
 import React from "react";
-import { MantineProvider, ColorSchemeScript, Button } from "@mantine/core";
+import { MantineProvider, ColorSchemeScript } from "@mantine/core";
 import { theme } from "../../theme";
 import { Header } from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -28,11 +28,21 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <ColorSchemeScript defaultColorScheme="auto" />
-        <link rel="shortcut icon" href="/favicon.svg" />
+        <link rel="shortcut icon" href="/logo.png" />
+        <meta
+          name="keywords"
+          content="Buminfo, buminfo.com, buminfo.co, latest, news, sports, update, latest news, punch, punchng"
+        />
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"
         />
+        <meta property="og:title" content="Buminfo" />
+        <meta
+          property="og:description"
+          content="Get the latest news as it dey hot!"
+        />
+        <meta property="og:image" content="/images/buminfo.png" />
       </head>
       <body className={inter.className}>
         <MantineProvider defaultColorScheme="auto" theme={theme}>
