@@ -44,6 +44,11 @@ export default function RootLayout({
         />
         <meta property="og:image" content="/images/buminfo.png" />
         {/* <!-- Google tag (gtag.js) --> */}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1435412513227114"
+          crossOrigin="anonymous"
+        ></script>
       </head>
       <body className={inter.className}>
         <MantineProvider defaultColorScheme="auto" theme={theme}>

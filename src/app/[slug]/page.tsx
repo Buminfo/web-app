@@ -112,6 +112,11 @@ function Page({ params }: any) {
               />
               <meta property="og:image" content={blog.imageUrl} />
               {/* <!-- Google tag (gtag.js) --> */}
+              <script
+                async
+                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1435412513227114"
+                crossOrigin="anonymous"
+              ></script>
             </head>
             <Card withBorder radius="md" p={0} className={classes.card}>
               <Grid>

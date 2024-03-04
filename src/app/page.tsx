@@ -7,6 +7,13 @@ export default async function Page() {
 
   return (
     <div>
+      <head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1435412513227114"
+          crossOrigin="anonymous"
+        ></script>
+      </head>
       <Introduction />
 
       <CategoryCard />
