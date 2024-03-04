@@ -102,7 +102,28 @@ export function Header() {
           <Link href={"/"}>
             <Image mah={50} w={"auto"} src={"/logo.png"} alt="dfghj" />
           </Link>
-          <InputSearch />
+          {/* <InputSearch /> */}
+          <Select
+            w={{ md: 500, sm: 300 }}
+            value={value ? value.value : null}
+            onChange={(_value, option) => {
+              setActive(option.label);
+              router.push(
+                `/categories/${encodeURIComponent(option.label)}?c=${
+                  option.value
+                }`
+              );
+
+              setValue(option);
+            }}
+            variant="filled"
+            radius="lg"
+            placeholder="Search other categories"
+            data={categories}
+            comboboxProps={{ shadow: "md" }}
+            searchable
+            nothingFoundMessage="Category Not found..."
+          />
 
           <Box className={classes.links} visibleFrom="sm">
             <Group justify="flex-end">
@@ -140,7 +161,7 @@ export function Header() {
             Home
           </Link>
           {mainItems}
-          <Select
+          {/* <Select
             value={value ? value.value : null}
             onChange={(_value, option) => {
               setActive(option.label);
@@ -159,7 +180,7 @@ export function Header() {
             comboboxProps={{ shadow: "md" }}
             searchable
             nothingFoundMessage="Category Not found..."
-          />
+          /> */}
         </Group>
       </Container>
       <Drawer
@@ -192,7 +213,7 @@ export function Header() {
               Home
             </Link>
             {mainItems}
-            <Select
+            {/* <Select
               value={value ? value.value : null}
               onChange={(_value, option) => {
                 setActive(option.label);
@@ -213,7 +234,7 @@ export function Header() {
               comboboxProps={{ shadow: "md" }}
               searchable
               nothingFoundMessage="Category Not found..."
-            />
+            /> */}
           </Group>
         </ScrollArea>
       </Drawer>

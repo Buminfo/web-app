@@ -58,7 +58,7 @@ function CategoryCard() {
   };
 
   return (
-    <Container size={"100%"} my="md" mx={"xl"}>
+    <Container size={"100%"} my="md" mx={{ lg: "xl" }}>
       {data ? (
         <InfiniteScroll
           dataLength={data.length}
