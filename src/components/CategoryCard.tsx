@@ -58,14 +58,14 @@ function CategoryCard() {
   };
 
   return (
-    <Container size={"100%"} my="md" mx={"xl"}>
+    <Container size={"100%"} my="md" mx={{ lg: "xl" }}>
       {data ? (
         <InfiniteScroll
           dataLength={data.length}
           next={fetchData}
           hasMore={hasMore}
           loader={<Loader color="blue" type="dots" />}
-          endMessage={<div>No more data to load</div>}
+          endMessage={<div></div>}
         >
           {data?.map((category: any) => (
             <>

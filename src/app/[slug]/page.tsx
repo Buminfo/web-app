@@ -16,11 +16,13 @@ import {
   Grid,
   Modal,
   Button,
+  Menu,
 } from "@mantine/core";
 import {
   IconArrowBack,
   IconBookmark,
   IconHeart,
+  IconShare,
   IconXboxX,
 } from "@tabler/icons-react";
 import classes from "./BlogPage.module.css";
@@ -35,6 +37,18 @@ import Skeleton from "@/components/Skeleton";
 import GetOneBlog from "../../../utils/getOneBlog";
 import RelatedNews from "@/components/RelatedNews";
 import { useDisclosure } from "@mantine/hooks";
+import {
+  FacebookMessengerIcon,
+  FacebookMessengerShareButton,
+  LinkedinIcon,
+  LinkedinShareButton,
+  TelegramIcon,
+  TelegramShareButton,
+  TwitterShareButton,
+  WhatsappIcon,
+  WhatsappShareButton,
+  XIcon,
+} from "react-share";
 
 function Page({ params }: any) {
   const router = useRouter();
@@ -153,13 +167,6 @@ function Page({ params }: any) {
               </Button>
 
               <Group justify="space-between" className={classes.footer}>
-                <Center>
-                  <Avatar src={blog.logo} size={24} radius="xl" mr="xs" />
-                  <Text fz="xs" inline>
-                    {blog.websiteName}
-                  </Text>
-                </Center>
-
                 <Group gap={8} mr={0}>
                   {/* <ActionIcon className={classes.action}>
                     <IconHeart
@@ -174,9 +181,72 @@ function Page({ params }: any) {
                     />
                   </ActionIcon> */}
                   <ActionIcon className={classes.action}>
-                    <Share category={categoryName} post={blog} theme={theme} />
+                    <Menu
+                      // className={classes.action}
+                      transitionProps={{ transition: "pop-top-right" }}
+                      position="top-end"
+                      // width={220}
+                      withinPortal
+                    >
+                      <Menu.Target>
+                        <IconShare
+                          style={{ width: rem(25), height: rem(25) }}
+                          color={theme.colors.blue[6]}
+                          stroke={1.5}
+                        />
+                      </Menu.Target>
+                      <Menu.Dropdown className={classes.dropdown}>
+                        <TwitterShareButton
+                          hashtags={["Buminfo", "buminfo", categoryName]}
+                          related={["buminfo"]}
+                          url={`https://www.buminfo.co/${blog.slug}?d=${blog.id}&c=${categoryName}&cd=${categoryId}`}
+                          title={blog.title}
+                          className={classes.dropItem}
+                        >
+                          <XIcon size={32} round />
+                        </TwitterShareButton>
+                        <FacebookMessengerShareButton
+                          url={`https://www.buminfo.co/${blog.slug}?d=${blog.id}&c=${categoryName}&cd=${categoryId}`}
+                          appId="521270401588372"
+                          className={classes.dropItem}
+                        >
+                          <FacebookMessengerIcon size={32} round />
+                        </FacebookMessengerShareButton>
+                        <TelegramShareButton
+                          url={`https://www.buminfo.co/${blog.slug}?d=${blog.id}&c=${categoryName}&cd=${categoryId}`}
+                          title={blog.title}
+                          className={classes.dropItem}
+                        >
+                          <TelegramIcon size={32} round />
+                        </TelegramShareButton>
+                        <WhatsappShareButton
+                          url={`https://www.buminfo.co/${blog.slug}?d=${blog.id}&c=${categoryName}&cd=${categoryId}`}
+                          title={blog.title}
+                          separator=":: "
+                          className={classes.dropItem}
+                        >
+                          <WhatsappIcon size={32} round />
+                        </WhatsappShareButton>
+                        <LinkedinShareButton
+                          url={`https://www.buminfo.co/${blog.slug}?d=${blog.id}&c=${categoryName}&cd=${categoryId}`}
+                          className={classes.dropItem}
+                        >
+                          <LinkedinIcon size={32} round />
+                        </LinkedinShareButton>
+                      </Menu.Dropdown>
+                    </Menu>
                   </ActionIcon>
+
+                  {/* <ActionIcon className={classes.action}>
+                    <Share category={categoryName} post={blog} theme={theme} />
+                  </ActionIcon> */}
                 </Group>
+                <Center>
+                  <Avatar src={blog.logo} size={24} radius="xl" mr="xs" />
+                  <Text fz="xs" inline>
+                    {blog.websiteName}
+                  </Text>
+                </Center>
               </Group>
             </Card>
             <Modal

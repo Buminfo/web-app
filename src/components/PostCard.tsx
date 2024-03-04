@@ -8,6 +8,7 @@ import {
   Grid,
   Group,
   Image,
+  Menu,
   Text,
   rem,
   useMantineTheme,
@@ -17,9 +18,21 @@ import React, { useEffect, useState } from "react";
 import ExtractedImage from "../../utils/extractImage";
 import TextTruncate from "react-text-truncate";
 import Moment from "./Moment";
-import { IconBookmark, IconHeart } from "@tabler/icons-react";
+import { IconBookmark, IconHeart, IconShare } from "@tabler/icons-react";
 import Share from "./buttons/share";
 import classes from "@/styles/CategoryCard.module.css";
+import {
+  FacebookMessengerIcon,
+  FacebookMessengerShareButton,
+  LinkedinIcon,
+  LinkedinShareButton,
+  TelegramIcon,
+  TelegramShareButton,
+  TwitterShareButton,
+  WhatsappIcon,
+  WhatsappShareButton,
+  XIcon,
+} from "react-share";
 
 function PostCard({ category, posts, slice }: any) {
   const theme = useMantineTheme();
@@ -121,7 +134,61 @@ function PostCard({ category, posts, slice }: any) {
                     />
                   </ActionIcon> */}
                   <ActionIcon variant="subtle" color="gray">
-                    <Share category={category} post={post} theme={theme} />
+                    {/* <Share category={category} post={post} theme={theme} /> */}
+                    <Menu
+                      // className={classes.action}
+                      transitionProps={{ transition: "pop-top-right" }}
+                      position="top-end"
+                      // width={220}
+                      withinPortal
+                    >
+                      <Menu.Target>
+                        <IconShare
+                          style={{ width: rem(25), height: rem(25) }}
+                          color={theme.colors.blue[6]}
+                          stroke={1.5}
+                        />
+                      </Menu.Target>
+                      <Menu.Dropdown className={classes.dropdown}>
+                        <TwitterShareButton
+                          hashtags={["Buminfo", "buminfo", category.name]}
+                          related={["buminfo"]}
+                          url={`https://www.buminfo.co/${post.slug}?d=${post.id}&c=${category.name}&cd=${category.id}`}
+                          title={post.title}
+                          className={classes.dropItem}
+                        >
+                          <XIcon size={32} round />
+                        </TwitterShareButton>
+                        <FacebookMessengerShareButton
+                          url={`https://www.buminfo.co/${post.slug}?d=${post.id}&c=${category.name}&cd=${category.id}`}
+                          appId="521270401588372"
+                          className={classes.dropItem}
+                        >
+                          <FacebookMessengerIcon size={32} round />
+                        </FacebookMessengerShareButton>
+                        <TelegramShareButton
+                          url={`https://www.buminfo.co/${post.slug}?d=${post.id}&c=${category.name}&cd=${category.id}`}
+                          title={post.title}
+                          className={classes.dropItem}
+                        >
+                          <TelegramIcon size={32} round />
+                        </TelegramShareButton>
+                        <WhatsappShareButton
+                          url={`https://www.buminfo.co/${post.slug}?d=${post.id}&c=${category.name}&cd=${category.id}`}
+                          title={post.title}
+                          separator=":: "
+                          className={classes.dropItem}
+                        >
+                          <WhatsappIcon size={32} round />
+                        </WhatsappShareButton>
+                        <LinkedinShareButton
+                          url={`https://www.buminfo.co/${post.slug}?d=${post.id}&c=${category.name}&cd=${category.id}`}
+                          className={classes.dropItem}
+                        >
+                          <LinkedinIcon size={32} round />
+                        </LinkedinShareButton>
+                      </Menu.Dropdown>
+                    </Menu>
                   </ActionIcon>
                 </Group>
               </Group>

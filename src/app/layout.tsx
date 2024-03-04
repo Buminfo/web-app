@@ -43,6 +43,7 @@ export default function RootLayout({
           content="Get the latest news as it dey hot!"
         />
         <meta property="og:image" content="/images/buminfo.png" />
+        {/* <!-- Google tag (gtag.js) --> */}
       </head>
       <body className={inter.className}>
         <MantineProvider defaultColorScheme="auto" theme={theme}>
@@ -50,6 +51,7 @@ export default function RootLayout({
           <NextTopLoader />
           {children}
           <ScrollToTop />
+
           <Footer />
         </MantineProvider>
       </body>
