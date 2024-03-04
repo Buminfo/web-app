@@ -65,7 +65,7 @@ function CategoryCard() {
           next={fetchData}
           hasMore={hasMore}
           loader={<Loader color="blue" type="dots" />}
-          endMessage={<div>No more data to load</div>}
+          endMessage={<div></div>}
         >
           {data?.map((category: any) => (
             <>
