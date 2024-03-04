@@ -95,7 +95,9 @@ function PostCard({ category, posts, slice }: any) {
                   line={2}
                   element="span"
                   truncateText="…"
-                  text={post.title}
+                  text={
+                    post.title == "" ? post.slug.replace(/_/g, " ") : post.title
+                  }
                   // textTruncateChild={<a href="#">Read on</a>}
                 />
               </Text>
