@@ -259,7 +259,7 @@ function Page({ params }: any) {
               size={"xl"}
               opened={opened}
               onClose={close}
-              title="Buminfo"
+              // title="Buminfo"
             >
               <iframe
                 src={blog.link}
