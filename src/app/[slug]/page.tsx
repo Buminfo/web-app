@@ -14,7 +14,7 @@ import {
   rem,
   Container,
   Grid,
-  Modal,
+  // Modal,
   Button,
   Menu,
 } from "@mantine/core";
@@ -28,7 +28,7 @@ import {
 import classes from "./BlogPage.module.css";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import Share from "@/components/buttons/share";
+// import Share from "@/components/buttons/share";
 import Link from "next/link";
 import Moment from "@/components/Moment";
 import BlogDescription from "./BlogDescription";
@@ -36,7 +36,7 @@ import ExtractedImage from "../../../utils/extractImage";
 import Skeleton from "@/components/Skeleton";
 import GetOneBlog from "../../../utils/getOneBlog";
 import RelatedNews from "@/components/RelatedNews";
-import { useDisclosure } from "@mantine/hooks";
+// import { useDisclosure } from "@mantine/hooks";
 import {
   FacebookMessengerIcon,
   FacebookMessengerShareButton,
@@ -57,7 +57,7 @@ function Page({ params }: any) {
 
   const theme = useMantineTheme();
   const [blog, setBlog] = useState<any>(undefined);
-  const [opened, { open, close }] = useDisclosure(false);
+  // const [opened, { open, close }] = useDisclosure(false);
 
   const slug = params.slug;
   const category = searchParams?.get("c");
@@ -94,6 +94,25 @@ function Page({ params }: any) {
       </Text> */}
         {blog ? (
           <Container>
+            <head>
+              {/* <ColorSchemeScript defaultColorScheme="auto" /> */}
+              <link rel="shortcut icon" href="/logo.png" />
+              <meta
+                name="keywords"
+                content="Buminfo, buminfo.com, buminfo.co, latest, news, sports, update, latest news, punch, punchng"
+              />
+              <meta
+                name="viewport"
+                content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"
+              />
+              <meta property="og:title" content="Buminfo" />
+              <meta
+                property="og:description"
+                content="Get the latest news as it dey hot!"
+              />
+              <meta property="og:image" content={blog.imageUrl} />
+              {/* <!-- Google tag (gtag.js) --> */}
+            </head>
             <Card withBorder radius="md" p={0} className={classes.card}>
               <Grid>
                 <Grid.Col span={{ base: 12, sm: 6 }}>
@@ -161,10 +180,22 @@ function Page({ params }: any) {
                 {blog.title}
               </Text>
               <BlogDescription description={blog.description} />
-
-              <Button size="md" onClick={open} style={{ marginTop: "15px" }}>
-                Read more...
-              </Button>
+              <a
+                style={{ margin: "auto" }}
+                href={blog.link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button
+                  maw={400}
+                  m={"auto"}
+                  size="md"
+                  // onClick={open}
+                  style={{ marginTop: "15px" }}
+                >
+                  Read more...
+                </Button>
+              </a>
 
               <Group justify="space-between" className={classes.footer}>
                 <Group gap={8} mr={0}>
@@ -189,11 +220,23 @@ function Page({ params }: any) {
                       withinPortal
                     >
                       <Menu.Target>
-                        <IconShare
-                          style={{ width: rem(25), height: rem(25) }}
-                          color={theme.colors.blue[6]}
-                          stroke={1.5}
-                        />
+                        <span
+                          style={{
+                            color: theme.colors.blue[6],
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            marginLeft: "30px",
+                            fontSize: rem(20),
+                          }}
+                        >
+                          Share
+                          <IconShare
+                            style={{ width: rem(25), height: rem(25) }}
+                            color={theme.colors.blue[6]}
+                            stroke={1.5}
+                          />
+                        </span>
                       </Menu.Target>
                       <Menu.Dropdown className={classes.dropdown}>
                         <TwitterShareButton
@@ -249,7 +292,7 @@ function Page({ params }: any) {
                 </Center>
               </Group>
             </Card>
-            <Modal
+            {/* <Modal
               // mih={"100vh"}
               style={{ zIndex: 9100 }}
               closeButtonProps={{
@@ -280,7 +323,7 @@ function Page({ params }: any) {
               >
                 <IconArrowBack style={{ marginRight: "5px" }} /> Go Back
               </Button>
-            </Modal>
+            </Modal> */}
           </Container>
         ) : (
           <Skeleton />
