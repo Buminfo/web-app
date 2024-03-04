@@ -19,7 +19,7 @@ import ExtractedImage from "../../utils/extractImage";
 import TextTruncate from "react-text-truncate";
 import Moment from "./Moment";
 import { IconBookmark, IconHeart, IconShare } from "@tabler/icons-react";
-import Share from "./buttons/share";
+// import Share from "./buttons/share";
 import classes from "@/styles/CategoryCard.module.css";
 import {
   FacebookMessengerIcon,

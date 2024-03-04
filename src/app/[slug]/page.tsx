@@ -28,7 +28,7 @@ import {
 import classes from "./BlogPage.module.css";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import Share from "@/components/buttons/share";
+// import Share from "@/components/buttons/share";
 import Link from "next/link";
 import Moment from "@/components/Moment";
 import BlogDescription from "./BlogDescription";
