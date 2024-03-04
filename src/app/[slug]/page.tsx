@@ -14,7 +14,7 @@ import {
   rem,
   Container,
   Grid,
-  Modal,
+  // Modal,
   Button,
   Menu,
 } from "@mantine/core";
@@ -36,7 +36,7 @@ import ExtractedImage from "../../../utils/extractImage";
 import Skeleton from "@/components/Skeleton";
 import GetOneBlog from "../../../utils/getOneBlog";
 import RelatedNews from "@/components/RelatedNews";
-import { useDisclosure } from "@mantine/hooks";
+// import { useDisclosure } from "@mantine/hooks";
 import {
   FacebookMessengerIcon,
   FacebookMessengerShareButton,
@@ -57,7 +57,7 @@ function Page({ params }: any) {
 
   const theme = useMantineTheme();
   const [blog, setBlog] = useState<any>(undefined);
-  const [opened, { open, close }] = useDisclosure(false);
+  // const [opened, { open, close }] = useDisclosure(false);
 
   const slug = params.slug;
   const category = searchParams?.get("c");
@@ -180,16 +180,22 @@ function Page({ params }: any) {
                 {blog.title}
               </Text>
               <BlogDescription description={blog.description} />
-
-              <Button
-                maw={400}
-                m={"auto"}
-                size="md"
-                onClick={open}
-                style={{ marginTop: "15px" }}
+              <a
+                style={{ margin: "auto" }}
+                href={blog.link}
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                Read more...
-              </Button>
+                <Button
+                  maw={400}
+                  m={"auto"}
+                  size="md"
+                  // onClick={open}
+                  style={{ marginTop: "15px" }}
+                >
+                  Read more...
+                </Button>
+              </a>
 
               <Group justify="space-between" className={classes.footer}>
                 <Group gap={8} mr={0}>
@@ -286,7 +292,7 @@ function Page({ params }: any) {
                 </Center>
               </Group>
             </Card>
-            <Modal
+            {/* <Modal
               // mih={"100vh"}
               style={{ zIndex: 9100 }}
               closeButtonProps={{
@@ -317,7 +323,7 @@ function Page({ params }: any) {
               >
                 <IconArrowBack style={{ marginRight: "5px" }} /> Go Back
               </Button>
-            </Modal>
+            </Modal> */}
           </Container>
         ) : (
           <Skeleton />
