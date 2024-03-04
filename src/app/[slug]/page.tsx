@@ -167,13 +167,6 @@ function Page({ params }: any) {
               </Button>
 
               <Group justify="space-between" className={classes.footer}>
-                <Center>
-                  <Avatar src={blog.logo} size={24} radius="xl" mr="xs" />
-                  <Text fz="xs" inline>
-                    {blog.websiteName}
-                  </Text>
-                </Center>
-
                 <Group gap={8} mr={0}>
                   {/* <ActionIcon className={classes.action}>
                     <IconHeart
@@ -197,7 +190,7 @@ function Page({ params }: any) {
                     >
                       <Menu.Target>
                         <IconShare
-                          style={{ width: rem(20), height: rem(20) }}
+                          style={{ width: rem(25), height: rem(25) }}
                           color={theme.colors.blue[6]}
                           stroke={1.5}
                         />
@@ -208,21 +201,21 @@ function Page({ params }: any) {
                           related={["buminfo"]}
                           url={`https://www.buminfo.co/${blog.slug}?d=${blog.id}&c=${categoryName}&cd=${categoryId}`}
                           title={blog.title}
-                          className="Demo__some-network__share-button"
+                          className={classes.dropItem}
                         >
                           <XIcon size={32} round />
                         </TwitterShareButton>
                         <FacebookMessengerShareButton
                           url={`https://www.buminfo.co/${blog.slug}?d=${blog.id}&c=${categoryName}&cd=${categoryId}`}
                           appId="521270401588372"
-                          className="Demo__some-network__share-button"
+                          className={classes.dropItem}
                         >
                           <FacebookMessengerIcon size={32} round />
                         </FacebookMessengerShareButton>
                         <TelegramShareButton
                           url={`https://www.buminfo.co/${blog.slug}?d=${blog.id}&c=${categoryName}&cd=${categoryId}`}
                           title={blog.title}
-                          className="Demo__some-network__share-button"
+                          className={classes.dropItem}
                         >
                           <TelegramIcon size={32} round />
                         </TelegramShareButton>
@@ -230,13 +223,13 @@ function Page({ params }: any) {
                           url={`https://www.buminfo.co/${blog.slug}?d=${blog.id}&c=${categoryName}&cd=${categoryId}`}
                           title={blog.title}
                           separator=":: "
-                          className="Demo__some-network__share-button"
+                          className={classes.dropItem}
                         >
                           <WhatsappIcon size={32} round />
                         </WhatsappShareButton>
                         <LinkedinShareButton
                           url={`https://www.buminfo.co/${blog.slug}?d=${blog.id}&c=${categoryName}&cd=${categoryId}`}
-                          className="Demo__some-network__share-button"
+                          className={classes.dropItem}
                         >
                           <LinkedinIcon size={32} round />
                         </LinkedinShareButton>
@@ -248,6 +241,12 @@ function Page({ params }: any) {
                     <Share category={categoryName} post={blog} theme={theme} />
                   </ActionIcon> */}
                 </Group>
+                <Center>
+                  <Avatar src={blog.logo} size={24} radius="xl" mr="xs" />
+                  <Text fz="xs" inline>
+                    {blog.websiteName}
+                  </Text>
+                </Center>
               </Group>
             </Card>
             <Modal
