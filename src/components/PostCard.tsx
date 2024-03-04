@@ -143,11 +143,23 @@ function PostCard({ category, posts, slice }: any) {
                       withinPortal
                     >
                       <Menu.Target>
-                        <IconShare
-                          style={{ width: rem(25), height: rem(25) }}
-                          color={theme.colors.blue[6]}
-                          stroke={1.5}
-                        />
+                        <span
+                          style={{
+                            color: theme.colors.blue[6],
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            marginLeft: "30px",
+                            fontSize: rem(17),
+                          }}
+                        >
+                          Share
+                          <IconShare
+                            style={{ width: rem(22), height: rem(22) }}
+                            color={theme.colors.blue[6]}
+                            stroke={1.5}
+                          />
+                        </span>
                       </Menu.Target>
                       <Menu.Dropdown className={classes.dropdown}>
                         <TwitterShareButton

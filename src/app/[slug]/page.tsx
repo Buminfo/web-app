@@ -162,7 +162,13 @@ function Page({ params }: any) {
               </Text>
               <BlogDescription description={blog.description} />
 
-              <Button size="md" onClick={open} style={{ marginTop: "15px" }}>
+              <Button
+                maw={400}
+                m={"auto"}
+                size="md"
+                onClick={open}
+                style={{ marginTop: "15px" }}
+              >
                 Read more...
               </Button>
 
@@ -189,11 +195,23 @@ function Page({ params }: any) {
                       withinPortal
                     >
                       <Menu.Target>
-                        <IconShare
-                          style={{ width: rem(25), height: rem(25) }}
-                          color={theme.colors.blue[6]}
-                          stroke={1.5}
-                        />
+                        <span
+                          style={{
+                            color: theme.colors.blue[6],
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            marginLeft: "30px",
+                            fontSize: rem(20),
+                          }}
+                        >
+                          Share
+                          <IconShare
+                            style={{ width: rem(25), height: rem(25) }}
+                            color={theme.colors.blue[6]}
+                            stroke={1.5}
+                          />
+                        </span>
                       </Menu.Target>
                       <Menu.Dropdown className={classes.dropdown}>
                         <TwitterShareButton

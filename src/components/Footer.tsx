@@ -202,7 +202,7 @@ function Footer() {
         </Title>
         <Text fz={"sm"}>Digitalsoft Applications Ltd Lagos, Nigeria.</Text>
         <Text c={"blue"} fz={"sm"}>
-          info@buminfo.com
+          <a href="mailto:buminfocom@gmail.com">buminfocom@gmail.com</a>
         </Text>
       </Modal>
       <Modal
