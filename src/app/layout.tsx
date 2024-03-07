@@ -67,8 +67,6 @@ export default function RootLayout({
           gtag('js', new Date());
           gtag('config', 'G-9TLX1XB6T4',{
           page_path: window.location.pathname,
-          
-![image](https://cdn.sanity.io/images/dgsq0x0m/production/61f24596fb210134e5df6a1dfa285de0f24791cc-1549x601.png?w=450)});
          `}
       </Script>
         <script
