@@ -47,7 +47,7 @@ export default function RootLayout({
         <meta property="og:image" content="/images/buminfo.png" />
         {/* <!-- Google tag (gtag.js) --> */}
 
-        <Script
+        <script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-9TLX1XB6T4"
         />
@@ -60,7 +60,7 @@ export default function RootLayout({
               gtag('config', 'G-9TLX1XB6T4');
           `}
         </script> */}
-        <Script strategy="lazyOnload">
+        <script id="google-analytics">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -68,7 +68,7 @@ export default function RootLayout({
           gtag('config', 'G-9TLX1XB6T4',{
           page_path: window.location.pathname,
          `}
-      </Script>
+      </script>
         <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1435412513227114"
