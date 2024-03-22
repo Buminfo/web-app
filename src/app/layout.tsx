@@ -74,14 +74,14 @@ export default function RootLayout({
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1435412513227114"
           crossOrigin="anonymous"
         ></script>
-
-
+       <script type="text/javascript" async src="https://static.jubnaadserve.com/api/widget.js"></script>
       </head>
       <body className={inter.className}>
         <MantineProvider defaultColorScheme="auto" theme={theme}>
           <Header />
           <NextTopLoader />
           {children}
+          <div className="JC-WIDGET-DMROOT" data-widget-id="471972bfc6bc96cd1d11e90f5290c6ad"></div>
           <ScrollToTop />
 
           <Footer />
